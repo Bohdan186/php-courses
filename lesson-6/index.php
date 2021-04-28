@@ -4,12 +4,12 @@
 </p>
 
 <?php
-	function lb_todo_1() {
-		$a = 10;
-		$b = 3;
+function lb_todo_1() {
+	$a = 10;
+	$b = 3;
 
-		echo ($a % $b);
-	}
+	echo $a % $b;
+}
 
 	lb_todo_1();
 ?>
@@ -22,12 +22,12 @@
 </p>
 
 <?php
-	function lb_todo_2() {
-		$a = 10;
-		$b = 3;
+function lb_todo_2() {
+	$a = 10;
+	$b = 3;
 
-		echo 0 !== ( $a % $b ) ? 'Делится' : 'Делится с остатком' ;
-	}
+	echo 0 !== ( $a % $b ) ? 'Делится' : 'Делится с остатком';
+}
 
 	lb_todo_2();
 ?>
@@ -38,11 +38,11 @@
 </p>
 
 <?php
-	function lb_todo_3() {
-		$st = pow(2, 10);
+function lb_todo_3() {
+	$st = pow( 2, 10 );
 
-		echo $st;
-	}
+	echo $st;
+}
 
 	lb_todo_3();
 ?>
@@ -53,9 +53,9 @@
 </p>
 
 <?php
-	function lb_todo_4() {
-		echo sqrt(245);
-	}
+function lb_todo_4() {
+	echo sqrt( 245 );
+}
 
 	lb_todo_4();
 ?>
@@ -68,16 +68,16 @@
 </p>
 
 <?php
-	function lb_todo_5() {
-		$arr  = array( 4, 2, 5, 19, 13, 0, 10 );
-		$summ = 0;
+function lb_todo_5() {
+	$arr  = array( 4, 2, 5, 19, 13, 0, 10 );
+	$summ = 0;
 
-		foreach ($arr as $value) {
-			$summ += pow($value, 2);
-		}
-
-		echo sqrt( $summ );
+	foreach ( $arr as $value ) {
+		$summ += pow( $value, 2 );
 	}
+
+	echo sqrt( $summ );
+}
 
 	lb_todo_5();
 ?>
@@ -89,16 +89,176 @@
 </p>
 
 <?php
-	function lb_todo_6() {
-		$sqrt    = sqrt( 379 );
-		$res     = round( $sqrt, 0 );
-		$res_one = round( $sqrt, 1 );
-		$res_two = round( $sqrt, 2 );
+function lb_todo_6() {
+	$sqrt    = sqrt( 379 );
+	$res     = round( $sqrt );
+	$res_one = round( $sqrt, 1 );
+	$res_two = round( $sqrt, 2 );
 
-		echo $res     . '<br>';
-		echo $res_one . '<br>';
-		echo $res_two . '<br>';
-	}
+	echo $res . '<br>';
+	echo $res_one . '<br>';
+	echo $res_two . '<br>';
+}
 
 	lb_todo_6();
+?>
+
+<h2>Завдання 7</h2>
+<p>
+	Найдите квадратный корень из 587.
+	Округлите результат в большую и меньшую сторону,
+	запишите результаты округления в ассоциативный массив с ключами 'floor' и 'ceil'.
+</p>
+
+<?php
+function lb_todo_7() {
+	$sqrt       = sqrt( 587 );
+	$sqrt_floor = floor( $sqrt );
+	$sqrt_ceil  = ceil( $sqrt );
+
+	$res_arr = array(
+		'floor' => $sqrt_floor,
+		'ceil'  => $sqrt_ceil,
+	);
+
+	var_dump( $res_arr );
+}
+
+	lb_todo_7();
+?>
+
+<h2>Завдання 8</h2>
+<p>
+	Даны числа 4, -2, 5, 19, -130, 0, 10. Найдите минимальное и максимальное число.
+</p>
+
+<?php
+function lb_todo_8() {
+	$arr = array( 4, -2, 5, 19, -130, 0, 10 );
+
+	echo 'min: ' . min( $arr ) . '<br> max: ' . max( $arr );
+}
+
+	lb_todo_8();
+?>
+
+<h2>Завдання 9</h2>
+<p>
+	Выведите на экран случайное число от 1 до 100.
+</p>
+
+<?php
+function lb_todo_9() {
+	echo mt_rand( 1, 100 );
+}
+
+	lb_todo_9();
+?>
+
+<h2>Завдання 10</h2>
+<p>
+	Заполните массив 10-ю случайными числами.
+	Подсказка: нужно воспользоваться циклами for или while.
+</p>
+
+<?php
+function lb_todo_10() {
+	$arr = array();
+
+	for ( $i = 0; $i < 10; $i++ ) {
+		$arr[] = mt_rand( 1, 100 );
+	}
+
+	var_dump( $arr );
+}
+
+	lb_todo_10();
+?>
+
+<h2>Завдання 11</h2>
+<p>
+	Даны переменные $a и $b.
+	Найдите найдите модуль разности $a и $b.
+	Проверьте работу скрипта самостоятельно для различных $a и $b.
+</p>
+
+<?php
+function lb_todo_11( $a, $b ) {
+	echo abs( $a - $b );
+}
+
+	lb_todo_11( -10, 5 );
+?>
+
+<h2>Завдання 12</h2>
+<p>
+	Дан массив в числами, к примеру [1, 2, -1, -2, 3, -3].
+	Создайте из него новый массив так, чтобы отрицательные числа стали положительными,
+	то есть у нас должен получиться такой массив: [1, 2, 1, 2, 3, 3].
+</p>
+
+<?php
+function lb_todo_12() {
+	$arr     = array( 1, 2, -1, -2, 3, -3 );
+	$new_arr = array();
+
+	foreach ( $arr as $value ) {
+		$new_arr[] = abs( $value );
+	}
+
+	var_dump( $new_arr );
+}
+
+	lb_todo_12();
+?>
+
+<h2>Завдання 13</h2>
+<p>
+	Дано число, например 30.
+	У этого числа есть делители - числа, на которое оно делится без остатка.
+	Делители числа 30 - это 1, 2, 3, 5, 6, 10, 15, 30.
+	Задача: сделайте массив делителей нашего числа. Число может быть любым, не обязательно, 30.
+</p>
+
+<?php
+function lb_todo_13( $numb ) {
+	$arr = array();
+
+	for ( $i = 1; $i < $numb; $i++ ) {
+		if ( 0 === ( $numb % $i ) ) {
+			$arr[] = $i;
+		}
+	}
+
+	var_dump( $arr );
+}
+
+	lb_todo_13( 30 );
+?>
+
+<h2>Завдання 14</h2>
+<p>
+	Дан массив [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].
+	Узнайте, сколько первых элементов массива нужно сложить, чтобы сумма получилась больше 10.
+</p>
+
+<?php
+function lb_todo_14() {
+	$arr  = array( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 );
+	$summ = 0;
+	$res  = 0;
+
+	foreach ( $arr as $value ) {
+		if ( 10 > $summ ) {
+			$summ += $value;
+			$res++;
+		} elseif ( 10 < $summ ) {
+			break;
+		}
+	}
+
+	echo $res;
+}
+
+	lb_todo_14();
 ?>

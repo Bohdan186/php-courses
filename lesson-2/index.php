@@ -2,11 +2,11 @@
 <p> Создайте переменную $a и присвойте ей значение 3. Выведите значение этой переменной на экран. </p>
 
 <?php
-	function lb_todo_1() {
-		$a = 3;
+function lb_todo_1() {
+	$a = 3;
 
-		echo $a;
-	}
+	echo $a;
+}
 
 	lb_todo_1();
 ?>
@@ -15,15 +15,15 @@
 <p> Создайте переменные $a=10 и $b=2. Выведите на экран их сумму, разность, произведение и частное ( результат деления ). </p>
 
 <?php
-	function lb_todo_2() {
-		$a = 10;
-		$b = 2;
+function lb_todo_2() {
+	$a = 10;
+	$b = 2;
 
-		echo $a + $b . '<br>';
-		echo $a - $b . '<br>';
-		echo $a * $b . '<br>';
-		echo $a / $b . '<br>';
-	}
+	echo $a + $b . '<br>';
+	echo $a - $b . '<br>';
+	echo $a * $b . '<br>';
+	echo $a / $b . '<br>';
+}
 
 	lb_todo_2();
 ?>
@@ -32,14 +32,14 @@
 <p> Создайте переменные $c=15 и $d=2. Просуммируйте их, а результат присвойте переменной $result. Выведите на экран значение переменной $result. </p>
 
 <?php
-	function lb_todo_3() {
-		$c = 15;
-		$d = 2;
+function lb_todo_3() {
+	$c = 15;
+	$d = 2;
 
-		$result = $c + $d;
+	$result = $c + $d;
 
-		echo $result;
-	}
+	echo $result;
+}
 
 	lb_todo_3();
 ?>
@@ -48,13 +48,13 @@
 <p> Создайте переменные $a=10, $b=2 и $c=5. Выведите на экран их сумму. </p>
 
 <?php
-	function lb_todo_4() {
-		$a = 10;
-		$b = 2;
-		$c = 5;
+function lb_todo_4() {
+	$a = 10;
+	$b = 2;
+	$c = 5;
 
-		echo $a + $b + $c;
-	}
+	echo $a + $b + $c;
+}
 
 	lb_todo_4();
 ?>
@@ -67,15 +67,15 @@
 </p>
 
 <?php
-	function lb_todo_5() {
-		$a      = 17;
-		$b      = 10;
-		$c      = $a - $b;
-		$d      = 7;
-		$result = $c + $d;
+function lb_todo_5() {
+	$a      = 17;
+	$b      = 10;
+	$c      = $a - $b;
+	$d      = 7;
+	$result = $c + $d;
 
-		echo $result;
-	}
+	echo $result;
+}
 
 	lb_todo_5();
 ?>
@@ -87,11 +87,11 @@
 </p>
 
 <?php
-	function lb_todo_6() {
-		$text = 'Привет, Мир!';
+function lb_todo_6() {
+	$text = 'Привет, Мир!';
 
-		echo $text;
-	}
+	echo $text;
+}
 
 	lb_todo_6();
 ?>
@@ -103,12 +103,12 @@
 </p>
 
 <?php
-	function lb_todo_7() {
-		$text1 = 'Привет, ';
-		$text2 = 'Мир!';
+function lb_todo_7() {
+	$text1 = 'Привет, ';
+	$text2 = 'Мир!';
 
-		echo $text1 . $text2;
-	}
+	echo $text1 . $text2;
+}
 
 	lb_todo_7();
 ?>
@@ -120,11 +120,11 @@
 </p>
 
 <?php
-	function lb_todo_8() {
-		$name = 'Богдан';
+function lb_todo_8() {
+	$name = 'Богдан';
 
-		echo 'Привет, ' . $name;
-	}
+	echo 'Привет, ' . $name;
+}
 
 	lb_todo_8();
 ?>
@@ -136,11 +136,11 @@
 </p>
 
 <?php
-	function lb_todo_9() {
-		$age = 21;
+function lb_todo_9() {
+	$age = 21;
 
-		echo 'Мне ' . $age . ' лет!';
-	}
+	echo 'Мне ' . $age . ' лет!';
+}
 
 	lb_todo_9();
 ?>
@@ -152,11 +152,11 @@
 </p>
 
 <?php
-	function lb_todo_10() {
-		$text = 'abcde';
+function lb_todo_10() {
+	$text = 'abcde';
 
-		echo $text[0] . '<br>' . $text[2] .  '<br>' . $text[4] ;
-	}
+	echo $text[0] . '<br>' . $text[2] . '<br>' . $text[4];
+}
 
 	lb_todo_10();
 ?>
@@ -168,12 +168,12 @@
 </p>
 
 <?php
-	function lb_todo_11() {
-		$text    = 'abcde';
-		$text[0] = '!';
+function lb_todo_11() {
+	$text    = 'abcde';
+	$text[0] = '!';
 
-		echo $text;
-	}
+	echo $text;
+}
 
 	lb_todo_11();
 ?>
@@ -185,16 +185,16 @@
 </p>
 
 <?php
-	function lb_todo_12() {
-		$num    = '12345';
-		$result = 0;
+function lb_todo_12() {
+	$num    = '12345';
+	$result = 0;
 
-		for ( $i=0; $i < strlen( $num ); $i++ ) { 
-			$result += $num[$i];
-		}
-
-		echo $result;
+	for ( $i = 0; $i < strlen( $num ); $i++ ) {
+		$result += $num[ $i ];
 	}
+
+	echo $result;
+}
 
 	lb_todo_12();
 ?>
@@ -203,15 +203,15 @@
 <p>	Напишите скрипт, который считает количество секунд в часе, в сутках, в месяце. </p>
 
 <?php
-	function lb_todo_13() {
-		$sec_on_hour  = 60 * 60;
-		$sec_on_day   = $sec_on_hour * 24;
-		$sec_on_month = $sec_on_day * 30;
+function lb_todo_13() {
+	$sec_on_hour  = 60 * 60;
+	$sec_on_day   = $sec_on_hour * 24;
+	$sec_on_month = $sec_on_day * 30;
 
-		echo 'Секунд в годині: ' . $sec_on_hour . '<br>';
-		echo 'Секунд в дні: '    . $sec_on_day . '<br>';
-		echo 'Секунд в місяці: ' . $sec_on_month . '<br>';
-	}
+	echo 'Секунд в годині: ' . $sec_on_hour . '<br>';
+	echo 'Секунд в дні: ' . $sec_on_day . '<br>';
+	echo 'Секунд в місяці: ' . $sec_on_month . '<br>';
+}
 
 	lb_todo_13();
 ?>
@@ -223,13 +223,13 @@
 </p>
 
 <?php
-	function lb_todo_14() {
-		$hour   = 14;
-		$minute = 42;
-		$second = 54;
+function lb_todo_14() {
+	$hour   = 14;
+	$minute = 42;
+	$second = 54;
 
-		echo $hour . ':' . $minute . ':' . $second;
-	}
+	echo $hour . ':' . $minute . ':' . $second;
+}
 
 	lb_todo_14();
 ?>
@@ -241,11 +241,11 @@
 </p>
 
 <?php
-	function lb_todo_15() {
-		$numb = 3;
+function lb_todo_15() {
+	$numb = 3;
 
-		echo pow( $numb, 2 );
-	}
+	echo pow( $numb, 2 );
+}
 
 	lb_todo_15();
 ?>
@@ -257,14 +257,14 @@
 </p>
 
 <?php
-	function lb_todo_16() {
-		$var  = 47;
-		$var += 7;
-		$var -= 18;
-		$var *= 10;
-		$var /= 20;
-		echo $var;
-	}
+function lb_todo_16() {
+	$var  = 47;
+	$var += 7;
+	$var -= 18;
+	$var *= 10;
+	$var /= 20;
+	echo $var;
+}
 
 	lb_todo_16();
 ?>
@@ -276,13 +276,13 @@
 </p>
 
 <?php
-	function lb_todo_17() {
-		$text  = 'Я';
-		$text .= ' хочу';
-		$text .= ' знать';
-		$text .= ' PHP!';
-		echo $text;
-	}
+function lb_todo_17() {
+	$text  = 'Я';
+	$text .= ' хочу';
+	$text .= ' знать';
+	$text .= ' PHP!';
+	echo $text;
+}
 
 	lb_todo_17();
 ?>
@@ -294,13 +294,13 @@
 </p>
 
 <?php
-	function lb_todo_18() {
-		$var = 10;
-		$var++;
-		$var++;
-		$var--;
-		echo $var;
-	}
+function lb_todo_18() {
+	$var = 10;
+	$var++;
+	$var++;
+	$var--;
+	echo $var;
+}
 
 	lb_todo_18();
 ?>
@@ -312,16 +312,16 @@
 </p>
 
 <?php
-	function lb_todo_19() {
-		$var  = 10;
-		$var += 7;
-		$var++;
-		$var--;
-		$var += 12;
-		$var *= 7;
-		$var -= 15;
-		echo $var;
-	}
+function lb_todo_19() {
+	$var  = 10;
+	$var += 7;
+	$var++;
+	$var--;
+	$var += 12;
+	$var *= 7;
+	$var -= 15;
+	echo $var;
+}
 
 	lb_todo_19();
 ?>

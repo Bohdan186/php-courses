@@ -2,11 +2,11 @@
 <p> Создайте массив $arr=['a', 'b', 'c']. Выведите значение массива на экран с помощью функции var_dump(  ). </p>
 
 <?php
-	function lb_todo_1() {
-		$arr = array( 'a', 'b', 'c' );
+function lb_todo_1() {
+	$arr = array( 'a', 'b', 'c' );
 
-		var_dump( $arr );
-	}
+	var_dump( $arr );
+}
 
 	lb_todo_1();
 ?>
@@ -15,13 +15,13 @@
 <p> С помощью массива $arr из предыдущего номера выведите на экран содержимое первого, второго и третьего элементов. </p>
 
 <?php
-	function lb_todo_2() {
-		$arr = array( 'a', 'b', 'c' );
-		
-		foreach ( $arr as $value ){
-			echo $value . '<br>';
-		}
+function lb_todo_2() {
+	$arr = array( 'a', 'b', 'c' );
+
+	foreach ( $arr as $value ) {
+		echo $value . '<br>';
 	}
+}
 
 	lb_todo_2();
 ?>
@@ -30,11 +30,11 @@
 <p>  Создайте массив $arr=['a', 'b', 'c', 'd'] и с его помощью выведите на экран строку 'a+b, c+d'. </p>
 
 <?php
-	function lb_todo_3() {
-		$arr = array( 'a', 'b', 'c', 'd' );
-		
-		echo $arr[0] . '+' . $arr[1] . ', ' . $arr[2] . '+' . $arr[3];
-	}
+function lb_todo_3() {
+	$arr = array( 'a', 'b', 'c', 'd' );
+
+	echo $arr[0] . '+' . $arr[1] . ', ' . $arr[2] . '+' . $arr[3];
+}
 
 	lb_todo_3();
 ?>
@@ -47,13 +47,13 @@
 </p>
 
 <?php
-	function lb_todo_4() {
-		$arr    = array( 2, 5, 3, 9 );
+function lb_todo_4() {
+	$arr = array( 2, 5, 3, 9 );
 
-		$result = $arr[0] * $arr[1] + $arr[2] * $arr[3];
-		
-		echo $result;
-	}
+	$result = $arr[0] * $arr[1] + $arr[2] * $arr[3];
+
+	echo $result;
+}
 
 	lb_todo_4();
 ?>
@@ -65,15 +65,15 @@
 </p>
 
 <?php
-	function lb_todo_5() {
-		$arr[] = 1;
-		$arr[] = 2;
-		$arr[] = 3;
-		$arr[] = 4;
-		$arr[] = 5;
+function lb_todo_5() {
+	$arr[] = 1;
+	$arr[] = 2;
+	$arr[] = 3;
+	$arr[] = 4;
+	$arr[] = 5;
 
-		var_dump( $arr );
-	}
+	var_dump( $arr );
+}
 
 	lb_todo_5();
 ?>
@@ -84,11 +84,15 @@
 </p>
 
 <?php
-	function lb_todo_6() {
-		$arr = array( 'a' => 1, 'b' => 2, 'c' => 3 );
+function lb_todo_6() {
+	$arr = array(
+		'a' => 1,
+		'b' => 2,
+		'c' => 3,
+	);
 
-		var_dump( $arr['c'] );
-	}
+	var_dump( $arr['c'] );
+}
 
 	lb_todo_6();
 ?>
@@ -99,16 +103,21 @@
 </p>
 
 <?php
-	function lb_todo_7() {
-		$arr = array( 'a' => 1, 'b' => 2, 'c' => 3 );
+function lb_todo_7() {
+	$arr    = array(
+		'a' => 1,
+		'b' => 2,
+		'c' => 3,
+	);
+	$result = 0;
 
-		foreach( $arr as $key  =>  $value ){
-			$result += $value;
-		}
-
-		echo $result;
-		
+	foreach ( $arr as $value ) {
+		$result += $value;
 	}
+
+	echo $result;
+
+}
 
 	lb_todo_7();
 ?>
@@ -120,12 +129,16 @@
 </p>
 
 <?php
-	function lb_todo_8() {
-		$arr = array( 'Коля' => '1000$', 'Вася' => '500$', 'Петя' => '200$' );
+function lb_todo_8() {
+	$arr = array(
+		'Коля' => '1000$',
+		'Вася' => '500$',
+		'Петя' => '200$',
+	);
 
-		echo 'Зарплата Пети = ' . $arr['Петя'];
-		echo 'Зарплата Коли = ' . $arr['Коля'];
-	}
+	echo 'Зарплата Пети = ' . $arr['Петя'];
+	echo 'Зарплата Коли = ' . $arr['Коля'];
+}
 
 	lb_todo_8();
 ?>
@@ -138,19 +151,19 @@
 </p>
 
 <?php
-	function lb_todo_9() {
-		$arr = array( 
-			'1' => 'Понеділок',
-			'2' => 'Вівторок',
-			'3' => 'Середа',
-			'4' => 'Четвер',
-			'5' => 'П\'ятниця',
-			'6' => 'Субота',
-			'7' => 'Неділя',
-		);
-		
-		echo $arr['1'];
-	}
+function lb_todo_9() {
+	$arr = array(
+		'1' => 'Понеділок',
+		'2' => 'Вівторок',
+		'3' => 'Середа',
+		'4' => 'Четвер',
+		'5' => 'П\'ятниця',
+		'6' => 'Субота',
+		'7' => 'Неділя',
+	);
+
+	echo $arr['1'];
+}
 
 	lb_todo_9();
 ?>
@@ -162,20 +175,20 @@
 </p>
 
 <?php
-	function lb_todo_10() {
-		$arr = array( 
-			'1' => 'Понедельник',
-			'2' => 'Вторник',
-			'3' => 'Среда',
-			'4' => 'Четверг',
-			'5' => 'Пятница',
-			'6' => 'Суббота',
-			'7' => 'Воскресенье',
-		);
-		$day = 3;
+function lb_todo_10() {
+	$arr = array(
+		'1' => 'Понедельник',
+		'2' => 'Вторник',
+		'3' => 'Среда',
+		'4' => 'Четверг',
+		'5' => 'Пятница',
+		'6' => 'Суббота',
+		'7' => 'Воскресенье',
+	);
+	$day = 3;
 
-		echo $arr[$day];
-	}
+	echo $arr[ $day ];
+}
 
 	lb_todo_10();
 ?>
@@ -187,14 +200,18 @@
 </p>
 
 <?php
-	function lb_todo_11() {
-		$arr = array(
-			'cms'    => array('joomla', 'wordpress', 'drupal'),
-			'colors' => array('blue' => 'голубой', 'red' => 'красный', 'green' => 'зеленый'),
-		);
-		
-		echo $arr['cms'][0] . '<br>' . $arr['cms'][2] . '<br>' . $arr['colors']['green'] . '<br>' . $arr['colors']['red'];
-	}
+function lb_todo_11() {
+	$arr = array(
+		'cms'    => array( 'joomla', 'wordpress', 'drupal' ),
+		'colors' => array(
+			'blue'  => 'голубой',
+			'red'   => 'красный',
+			'green' => 'зеленый',
+		),
+	);
+
+	echo $arr['cms'][0] . '<br>' . $arr['cms'][2] . '<br>' . $arr['colors']['green'] . '<br>' . $arr['colors']['red'];
+}
 
 	lb_todo_11();
 ?>
@@ -207,14 +224,14 @@
 </p>
 
 <?php
-	function lb_todo_12() {
-		$arr = array(
-			'ru' => array( 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье' ),
-			'en' => array( 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' ),
-		);
-		
-		echo $arr['ru'][0] . '<br>' . $arr['en'][2];
-	}
+function lb_todo_12() {
+	$arr = array(
+		'ru' => array( 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье' ),
+		'en' => array( 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' ),
+	);
+
+	echo $arr['ru'][0] . '<br>' . $arr['en'][2];
+}
 
 	lb_todo_12();
 ?>
@@ -227,16 +244,24 @@
 </p>
 
 <?php
-	function lb_todo_13() {
-		$arr = array(
-			'ru' => array( '1' => 'Понедельник', '2' => 'Вторник', '3' => 'Среда', '4' => 'Четверг', '5' => 'Пятница', '6' => 'Суббота', '7' => 'Воскресенье' ),
-			'en' => array( 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' ),
-		);
-		$lang = 'ru';
-		$day  = 3;
+function lb_todo_13() {
+	$arr  = array(
+		'ru' => array(
+			'1' => 'Понедельник',
+			'2' => 'Вторник',
+			'3' => 'Среда',
+			'4' => 'Четверг',
+			'5' => 'Пятница',
+			'6' => 'Суббота',
+			'7' => 'Воскресенье',
+		),
+		'en' => array( 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' ),
+	);
+	$lang = 'ru';
+	$day  = 3;
 
-		echo $arr[$lang][$day];
-	}
+	echo $arr[ $lang ][ $day ];
+}
 
 	lb_todo_13();
 ?>

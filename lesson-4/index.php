@@ -5,9 +5,9 @@
 </p>
 
 <?php
-	function lb_todo_1( $a ) {
-		echo ( 0 === $a ? 'Верно' : 'Неверно' ) . '<br>';
-	}
+function lb_todo_1( $a ) {
+	echo ( 0 === $a ? 'Верно' : 'Неверно' ) . '<br>';
+}
 
 	lb_todo_1( 1 );
 	lb_todo_1( 0 );
@@ -21,9 +21,9 @@
 </p>
 
 <?php
-	function lb_todo_2( $a ) {
-		echo ( 0 < $a ? 'Верно' : 'Неверно' ) . '<br>';
-	}
+function lb_todo_2( $a ) {
+	echo ( 0 < $a ? 'Верно' : 'Неверно' ) . '<br>';
+}
 
 	lb_todo_2( 1 );
 	lb_todo_2( 0 );
@@ -37,9 +37,9 @@
 </p>
 
 <?php
-	function lb_todo_3( $a ) {
-		echo ( 0 > $a ? 'Верно' : 'Неверно' ) . '<br>';
-	}
+function lb_todo_3( $a ) {
+	echo ( 0 > $a ? 'Верно' : 'Неверно' ) . '<br>';
+}
 
 	lb_todo_3( 1 );
 	lb_todo_3( 0 );
@@ -53,9 +53,9 @@
 </p>
 
 <?php
-	function lb_todo_4( $a ) {
-		echo ( 0 <= $a ? 'Верно' : 'Неверно' ) . '<br>';
-	}
+function lb_todo_4( $a ) {
+	echo ( 0 <= $a ? 'Верно' : 'Неверно' ) . '<br>';
+}
 
 	lb_todo_4( 1 );
 	lb_todo_4( 0 );
@@ -69,9 +69,9 @@
 </p>
 
 <?php
-	function lb_todo_5( $a ) {
-		echo ( 0 >= $a ? 'Верно' : 'Неверно' ) . '<br>';
-	}
+function lb_todo_5( $a ) {
+	echo ( 0 >= $a ? 'Верно' : 'Неверно' ) . '<br>';
+}
 
 	lb_todo_5( 1 );
 	lb_todo_5( 0 );
@@ -85,9 +85,9 @@
 </p>
 
 <?php
-	function lb_todo_6( $a ) {
-		echo ( 0 != $a ? 'Верно' : 'Неверно' ) . '<br>';
-	}
+function lb_todo_6( $a ) {
+	echo ( 0 != $a ? 'Верно' : 'Неверно' ) . '<br>';
+}
 
 	lb_todo_6( 1 );
 	lb_todo_6( 0 );
@@ -101,9 +101,9 @@
 </p>
 
 <?php
-	function lb_todo_7( $a ) {
-		echo ( 'test' === $a ? 'Верно' : 'Неверно' ) . '<br>';
-	}
+function lb_todo_7( $a ) {
+	echo ( 'test' === $a ? 'Верно' : 'Неверно' ) . '<br>';
+}
 
 	lb_todo_7( 'test' );
 	lb_todo_7( 'тест' );
@@ -117,9 +117,9 @@
 </p>
 
 <?php
-	function lb_todo_8( $a ) {
-		echo ( '1' === $a ? 'Верно' : 'Неверно' ) . '<br>';
-	}
+function lb_todo_8( $a ) {
+	echo ( '1' === $a ? 'Верно' : 'Неверно' ) . '<br>';
+}
 
 	lb_todo_8( '1' );
 	lb_todo_8( 1 );
@@ -133,9 +133,9 @@
 </p>
 
 <?php
-	function lb_todo_9( $a ) {
-		echo ( empty( $a ) ? 'Верно' : 'Неверно' ) . '<br>';
-	}
+function lb_todo_9( $a ) {
+	echo ( empty( $a ) ? 'Верно' : 'Неверно' ) . '<br>';
+}
 
 	lb_todo_9( 1 );
 	lb_todo_9( 3 );
@@ -153,9 +153,9 @@
 </p>
 
 <?php
-	function lb_todo_10( $a ) {
-		echo ( !empty( $a ) ? 'Верно' : 'Неверно' ) . '<br>';
-	}
+function lb_todo_10( $a ) {
+	echo ( ! empty( $a ) ? 'Верно' : 'Неверно' ) . '<br>';
+}
 
 	lb_todo_10( 1 );
 	lb_todo_10( 3 );
@@ -174,9 +174,9 @@
 </p>
 
 <?php
-	function lb_todo_11( $a ) {
-		echo ( isset( $a ) ? 'Верно' : 'Неверно' ) . '<br>';
-	}
+function lb_todo_11( $a ) {
+	echo ( isset( $a ) ? 'Верно' : 'Неверно' ) . '<br>';
+}
 
 	lb_todo_11( 3 );
 	lb_todo_11( null );
@@ -188,9 +188,9 @@
 </p>
 
 <?php
-	function lb_todo_12( $a ) {
-		echo ( !isset( $a ) ? 'Верно' : 'Неверно' ) . '<br>';
-	}
+function lb_todo_12( $a ) {
+	echo ( ! isset( $a ) ? 'Верно' : 'Неверно' ) . '<br>';
+}
 
 	lb_todo_12( 3 );
 	lb_todo_12( null );
@@ -204,17 +204,17 @@
 </p>
 
 <?php
-	function lb_todo_13( $var ) {
-		echo ( true === $var ? 'Верно' : 'Неверно' ) . '<br>';
+function lb_todo_13( $var ) {
+	echo ( true === $var ? 'Верно' : 'Неверно' ) . '<br>';
+}
+
+function lb_todo_13_2( $var ) {
+	if ( true === $var ) {
+		echo 'Верно' . '<br>';
+	} else {
+		echo 'Неверно' . '<br>';
 	}
-	
-	function lb_todo_13_2( $var ) {
-		if ( true === $var ){
-			echo 'Верно' . '<br>';
-		}else{
-			echo 'Неверно' . '<br>';
-		}
-	}
+}
 
 	lb_todo_13( true );
 	lb_todo_13( false );
@@ -230,17 +230,17 @@
 </p>
 
 <?php
-	function lb_todo_14( $var ) {
-		echo ( true !== $var ? 'Верно' : 'Неверно' ) . '<br>';
+function lb_todo_14( $var ) {
+	echo ( true !== $var ? 'Верно' : 'Неверно' ) . '<br>';
+}
+
+function lb_todo_14_2( $var ) {
+	if ( true !== $var ) {
+		echo 'Верно' . '<br>';
+	} else {
+		echo 'Неверно' . '<br>';
 	}
-	
-	function lb_todo_14_2( $var ) {
-		if ( true !== $var ){
-			echo 'Верно' . '<br>';
-		}else{
-			echo 'Неверно' . '<br>';
-		}
-	}
+}
 
 	lb_todo_14( true );
 	lb_todo_14( false );
@@ -255,9 +255,9 @@
 </p>
 
 <?php
-	function lb_todo_15( $a ) {
-		echo ( 0 < $a && $a < 5 ? 'Верно' : 'Неверно' ) . '<br>';
-	}
+function lb_todo_15( $a ) {
+	echo ( 0 < $a && $a < 5 ? 'Верно' : 'Неверно' ) . '<br>';
+}
 
 	lb_todo_15( 5 );
 	lb_todo_15( 0 );
@@ -273,9 +273,9 @@
 </p>
 
 <?php
-	function lb_todo_16( $a ) {
-		echo ( 0 === $a || 2 === $a ? $a + 7 : $a / 10 ) . '<br>';
-	}
+function lb_todo_16( $a ) {
+	echo ( 0 === $a || 2 === $a ? $a + 7 : $a / 10 ) . '<br>';
+}
 
 	lb_todo_16( 5 );
 	lb_todo_16( 0 );
@@ -291,9 +291,9 @@
 </p>
 
 <?php
-	function lb_todo_17( $a, $b ) {
-		echo ( 1 >= $a && 3 <= $b ? $a + $b : $a - $b  ) . '<br>';
-	}
+function lb_todo_17( $a, $b ) {
+	echo ( 1 >= $a && 3 <= $b ? $a + $b : $a - $b ) . '<br>';
+}
 
 	lb_todo_17( 1, 3 );
 	lb_todo_17( 0, 6 );
@@ -308,9 +308,9 @@
 </p>
 
 <?php
-	function lb_todo_18( $a, $b ) {
-		echo (  ( 2 < $a && $a < 11 ) || ( 6 <= $b && $b < 14 ) ? 'Верно' : 'Неверно'  ) . '<br>';
-	}
+function lb_todo_18( $a, $b ) {
+	echo ( ( 2 < $a && $a < 11 ) || ( 6 <= $b && $b < 14 ) ? 'Верно' : 'Неверно' ) . '<br>';
+}
 
 	lb_todo_18( 1, 3 );
 	lb_todo_18( 0, 6 );
@@ -325,22 +325,22 @@
 </p>
 
 <?php
-	function lb_todo_19( $num ) {
-		switch ( $num ) {
-			case 1:
-				echo 'зима' . '<br>';
-				break;
-			case 2:
-				echo 'весна' . '<br>';
-				break;
-			case 3:
-				echo 'лето' . '<br>';
-				break;
-			case 4:
-				echo 'осінь' . '<br>';
-				break;
-		}
+function lb_todo_19( $num ) {
+	switch ( $num ) {
+		case 1:
+			echo 'зима' . '<br>';
+			break;
+		case 2:
+			echo 'весна' . '<br>';
+			break;
+		case 3:
+			echo 'лето' . '<br>';
+			break;
+		case 4:
+			echo 'осінь' . '<br>';
+			break;
 	}
+}
 
 	lb_todo_19( 1 );
 	lb_todo_19( 3 );
@@ -353,17 +353,17 @@
 </p>
 
 <?php
-	function lb_todo_20( $day ) {
-		if( 1 <= $day && $day <= 31 ){
-			if( 1 <= $day && $day < 10 ){
-				echo 'первая декада месяца' . '<br>';
-			}elseif ( 10 <= $day && $day < 20 ){
-				echo 'вторая декада месяца' . '<br>';
-			}elseif ( 20 <= $day && $day < 31 ){
-				echo 'третья декада месяца' . '<br>';
-			}
+function lb_todo_20( $day ) {
+	if ( 1 <= $day && $day <= 31 ) {
+		if ( 1 <= $day && $day < 10 ) {
+			echo 'первая декада месяца' . '<br>';
+		} elseif ( 10 <= $day && $day < 20 ) {
+			echo 'вторая декада месяца' . '<br>';
+		} elseif ( 20 <= $day && $day < 31 ) {
+			echo 'третья декада месяца' . '<br>';
 		}
 	}
+}
 
 	lb_todo_20( 1 );
 	lb_todo_20( 21 );
@@ -376,19 +376,19 @@
 </p>
 
 <?php
-	function lb_todo_21( $month ) {
-		if( 1 <= $month && $month <= 12 ){
-			if( 12 === $month || 1 === $month || 2 === $month ){
-				echo 'ето зима' . '<br>';
-			}elseif ( 3 === $month || 4 === $month || 5 === $month ){
-				echo 'ето весна' . '<br>';
-			}elseif ( 6 === $month || 7 === $month || 8 === $month ){
-				echo 'ето лето' . '<br>';
-			}elseif ( 9 === $month || 10 === $month || 11 === $month ){
-				echo 'ето осень' . '<br>';
-			}
+function lb_todo_21( $month ) {
+	if ( 1 <= $month && $month <= 12 ) {
+		if ( 12 === $month || 1 === $month || 2 === $month ) {
+			echo 'ето зима' . '<br>';
+		} elseif ( 3 === $month || 4 === $month || 5 === $month ) {
+			echo 'ето весна' . '<br>';
+		} elseif ( 6 === $month || 7 === $month || 8 === $month ) {
+			echo 'ето лето' . '<br>';
+		} elseif ( 9 === $month || 10 === $month || 11 === $month ) {
+			echo 'ето осень' . '<br>';
 		}
 	}
+}
 
 	lb_todo_21( 1 );
 	lb_todo_21( 6 );
@@ -403,13 +403,13 @@
 </p>
 
 <?php
-	function lb_todo_22( $year ) {
-		if( (0 === ( $year % 4 ) && 0 !== ( $year % 100 )) || 0 === ( $year % 400) ){
-			echo 'Етот год Високосный' . '<br>';
-		}else {
-			echo 'Етот год Невисокосный' . '<br>';
-		}
+function lb_todo_22( $year ) {
+	if ( ( 0 === ( $year % 4 ) && 0 !== ( $year % 100 ) ) || 0 === ( $year % 400 ) ) {
+		echo 'Етот год Високосный' . '<br>';
+	} else {
+		echo 'Етот год Невисокосный' . '<br>';
 	}
+}
 
 	lb_todo_22( 1700 );
 	lb_todo_22( 1800 );
@@ -424,9 +424,9 @@
 </p>
 
 <?php
-	function lb_todo_23( $str ) {
-		echo ( 'a' === $str[0] ? 'Да' : 'Нет' ) . '<br>';
-	}
+function lb_todo_23( $str ) {
+	echo ( 'a' === $str[0] ? 'Да' : 'Нет' ) . '<br>';
+}
 
 	lb_todo_23( 'abcde' );
 	lb_todo_23( 'bacde' );
@@ -440,13 +440,13 @@
 </p>
 
 <?php
-	function lb_todo_24( $str ) {
-		if( '1' === $str[0] || '2' === $str[0] || '3' === $str[0] ){
-			echo 'Да' . '<br>';
-		}else {
-			echo 'Нет' . '<br>';
-		}
+function lb_todo_24( $str ) {
+	if ( '1' === $str[0] || '2' === $str[0] || '3' === $str[0] ) {
+		echo 'Да' . '<br>';
+	} else {
+		echo 'Нет' . '<br>';
 	}
+}
 
 	lb_todo_24( '12345' );
 	lb_todo_24( '22345' );
@@ -461,15 +461,15 @@
 </p>
 
 <?php
-	function lb_todo_25( $str ) {
-		$result = 0;
+function lb_todo_25( $str ) {
+	$result = 0;
 
-		for ( $i=0; $i < strlen( $str ); $i++ ) { 
-			$result += $str[$i];
-		}
-
-		echo $result;
+	for ( $i = 0; $i < strlen( $str ); $i++ ) {
+		$result += $str[ $i ];
 	}
+
+	echo $result;
+}
 
 	lb_todo_25( '12345' );
 ?>
@@ -482,18 +482,18 @@
 </p>
 
 <?php
-	function lb_todo_26( $str ) {
-		if( 6 === strlen( $str ) ){
-			$str_first = $str[0] + $str[1] + $str[2];
-			$str_last = $str[3] + $str[4] + $str[5];
-			
-			if($str_first === $str_last){
-				echo 'Да' . '<br>';
-			}else {
-				echo 'Нет' . '<br>';
-			}
+function lb_todo_26( $str ) {
+	if ( 6 === strlen( $str ) ) {
+		$str_first = $str[0] + $str[1] + $str[2];
+		$str_last  = $str[3] + $str[4] + $str[5];
+
+		if ( $str_first === $str_last ) {
+			echo 'Да' . '<br>';
+		} else {
+			echo 'Нет' . '<br>';
 		}
 	}
+}
 
 	lb_todo_26( '123321' );
 ?>

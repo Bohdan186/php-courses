@@ -5,13 +5,13 @@
 </p>
 
 <?php
-	function lb_todo_1() {
-		$arr = array( 'html', 'css', 'php', 'js', 'jq' );
+function lb_todo_1() {
+	$arr = array( 'html', 'css', 'php', 'js', 'jq' );
 
-		foreach ( $arr as $value ){
-			echo $value . '<br>';
-		}
+	foreach ( $arr as $value ) {
+		echo $value . '<br>';
 	}
+}
 
 	lb_todo_1();
 ?>
@@ -24,16 +24,16 @@
 </p>
 
 <?php
-	function lb_todo_2() {
-		$arr    = array( 1, 2, 3, 4, 5 );
-		$result = 0;
+function lb_todo_2() {
+	$arr    = array( 1, 2, 3, 4, 5 );
+	$result = 0;
 
-		foreach ( $arr as $value ){
-			$result += $value;
-		}
-
-		echo $result;
+	foreach ( $arr as $value ) {
+		$result += $value;
 	}
+
+	echo $result;
+}
 
 	lb_todo_2();
 ?>
@@ -46,16 +46,16 @@
 </p>
 
 <?php
-	function lb_todo_3() {
-		$arr    = array( 1, 2, 3, 4, 5 );
-		$result = 0;
+function lb_todo_3() {
+	$arr    = array( 1, 2, 3, 4, 5 );
+	$result = 0;
 
-		foreach ( $arr as $value ){
-			$result += pow($value, 2);
-		}
-
-		echo $result;
+	foreach ( $arr as $value ) {
+		$result += pow( $value, 2 );
 	}
+
+	echo $result;
+}
 
 	lb_todo_3();
 ?>
@@ -67,15 +67,17 @@
 </p>
 
 <?php
-	function lb_todo_4() {
-		$arr    = ['green' => 'зеленый', 'red' => 'красный','blue' => 'голубой'];
+function lb_todo_4() {
+	$arr = array(
+		'green' => 'зеленый',
+		'red'   => 'красный',
+		'blue'  => 'голубой',
+	);
 
-		$result = 0;
-
-		foreach ( $arr as $key => $value ){
-			echo $key . ' - ' . $value . '<br>';
-		}
+	foreach ( $arr as $key => $value ) {
+		echo $key . ' - ' . $value . '<br>';
 	}
+}
 
 	lb_todo_4();
 ?>
@@ -87,13 +89,17 @@
 </p>
 
 <?php
-	function lb_todo_5() {
-		$arr = ['Коля' => '200', 'Вася' => '300','Петя' => '400'];
+function lb_todo_5() {
+	$arr = array(
+		'Коля' => '200',
+		'Вася' => '300',
+		'Петя' => '400',
+	);
 
-		foreach ( $arr as $key => $value ){
-			echo $key . ' - зарплата ' . $value . ' долларов.' . '<br>';
-		}
+	foreach ( $arr as $key => $value ) {
+		echo $key . ' - зарплата ' . $value . ' долларов.' . '<br>';
 	}
+}
 
 	lb_todo_5();
 ?>
@@ -104,21 +110,21 @@
 </p>
 
 <?php
-	function lb_todo_6_1() {
-		$i = 1;
+function lb_todo_6_1() {
+	$i = 1;
 
-		while ( $i <= 100 ) {
-			echo $i . '<br>';
+	while ( $i <= 100 ) {
+		echo $i . '<br>';
 
-			$i++;
-		}
+		$i++;
 	}
-	
-	function lb_todo_6_2() {
-		for ( $i = 1 ; $i <= 100 ; $i++ ) { 
-			echo $i . '<br>';
-		}
+}
+
+function lb_todo_6_2() {
+	for ( $i = 1; $i <= 100; $i++ ) {
+		echo $i . '<br>';
 	}
+}
 
 	lb_todo_6_1();
 	lb_todo_6_2();
@@ -130,21 +136,21 @@
 </p>
 
 <?php
-	function lb_todo_7_1() {
-		$i = 11;
+function lb_todo_7_1() {
+	$i = 11;
 
-		while ( $i <= 33 ) { 
-			echo $i . '<br>';
+	while ( $i <= 33 ) {
+		echo $i . '<br>';
 
-			$i++;
-		}
+		$i++;
 	}
+}
 
-	function lb_todo_7_2() {
-		for ( $i = 11 ; $i <= 33  ; $i++ ) { 
-			echo $i . '<br>';
-		}
+function lb_todo_7_2() {
+	for ( $i = 11; $i <= 33; $i++ ) {
+		echo $i . '<br>';
 	}
+}
 
 	lb_todo_7_1();
 	lb_todo_7_2();
@@ -156,25 +162,25 @@
 </p>
 
 <?php
-	function lb_todo_8_1() {
-		$i = 0;
+function lb_todo_8_1() {
+	$i = 0;
 
-		while ( $i <= 100 ) { 
-			if ( 0 === ( $i % 2 ) ){
-				echo $i . '<br>';
-			}
+	while ( $i <= 100 ) {
+		if ( 0 === ( $i % 2 ) ) {
+			echo $i . '<br>';
+		}
 
-			$i++;
+		$i++;
+	}
+}
+
+function lb_todo_8_2() {
+	for ( $i = 0; $i <= 100; $i++ ) {
+		if ( 0 === ( $i % 2 ) ) {
+			echo $i . '<br>';
 		}
 	}
-
-	function lb_todo_8_2() {
-		for ( $i = 0 ; $i <= 100  ; $i++ ) { 
-			if ( 0 === ( $i % 2 ) ){
-				echo $i . '<br>';
-			}
-		}
-	}
+}
 
 	lb_todo_8_1();
 	lb_todo_8_2();
@@ -186,28 +192,28 @@
 </p>
 
 <?php
-	function lb_todo_9_1() {
-		$result = 0;
-		$i      = 0;
+function lb_todo_9_1() {
+	$result = 0;
+	$i      = 0;
 
-		while ( $i <= 100 ) { 
-			$result += $i;
+	while ( $i <= 100 ) {
+		$result += $i;
 
-			$i++;
-		}
-
-		echo $result . '<br>';
+		$i++;
 	}
 
-	function lb_todo_9_2() {
-		$result = 0;
+	echo $result . '<br>';
+}
 
-		for ( $i = 0 ; $i <= 100  ; $i++ ) { 
-			$result += $i;
-		}
+function lb_todo_9_2() {
+	$result = 0;
 
-		echo $result . '<br>';
+	for ( $i = 0; $i <= 100; $i++ ) {
+		$result += $i;
 	}
+
+	echo $result . '<br>';
+}
 
 	lb_todo_9_1();
 	lb_todo_9_2();
@@ -221,15 +227,15 @@
 </p>
 
 <?php
-	function lb_todo_10() {
-		$arr = array(2, 5, 9, 15, 0, 4);
+function lb_todo_10() {
+	$arr = array( 2, 5, 9, 15, 0, 4 );
 
-		foreach ( $arr as $value ){
-			if ( 3 < $value && $value < 10 ){
-				echo $value . '<br>';
-			}
+	foreach ( $arr as $value ) {
+		if ( 3 < $value && $value < 10 ) {
+			echo $value . '<br>';
 		}
 	}
+}
 
 	lb_todo_10();
 ?>
@@ -242,18 +248,18 @@
 </p>
 
 <?php
-	function lb_todo_11() {
-		$arr    = array(2, 5, -9, -15, 0, 4);
-		$result = 0;
+function lb_todo_11() {
+	$arr    = array( 2, 5, -9, -15, 0, 4 );
+	$result = 0;
 
-		foreach ( $arr as $value ){
-			if ( 0 <= $value ){
-				$result += $value;
-			}
+	foreach ( $arr as $value ) {
+		if ( 0 <= $value ) {
+			$result += $value;
 		}
-
-		echo $result;
 	}
+
+	echo $result;
+}
 
 	lb_todo_11();
 ?>
@@ -266,17 +272,17 @@
 </p>
 
 <?php
-	function lb_todo_12() {
-		$arr = array(1, 2, 5, 9, 4, 13, 4, 10);
+function lb_todo_12() {
+	$arr = array( 1, 2, 5, 9, 4, 13, 4, 10 );
 
-		foreach ( $arr as $value ){
-			if(4 ===  $value){
-				echo 'Есть!' . '<br>';
-				
-				break;
-			}
+	foreach ( $arr as $value ) {
+		if ( 4 === $value ) {
+			echo 'Есть!' . '<br>';
+
+			break;
 		}
 	}
+}
 
 	lb_todo_12();
 ?>
@@ -288,15 +294,15 @@
 </p>
 
 <?php
-	function lb_todo_13() {
-		$arr = array( '10', '20', '30', '50', '235', '3000' );
+function lb_todo_13() {
+	$arr = array( '10', '20', '30', '50', '235', '3000' );
 
-		foreach ( $arr as $value ){
-			if( '1' === $value[0] || '2' === $value[0] || '5' === $value[0] ){
-				echo $value . '<br>';
-			}
+	foreach ( $arr as $value ) {
+		if ( '1' === $value[0] || '2' === $value[0] || '5' === $value[0] ) {
+			echo $value . '<br>';
 		}
 	}
+}
 
 	lb_todo_13();
 ?>
@@ -308,16 +314,16 @@
 </p>
 
 <?php
-	function lb_todo_14() {
-		$arr    = array(1, 2, 3, 4, 5, 6, 7, 8, 9);
-		$result = '-';
+function lb_todo_14() {
+	$arr    = array( 1, 2, 3, 4, 5, 6, 7, 8, 9 );
+	$result = '-';
 
-		foreach ( $arr as $value ){
-			$result .= $value . '-';
-		}
-
-		echo $result;
+	foreach ( $arr as $value ) {
+		$result .= $value . '-';
 	}
+
+	echo $result;
+}
 
 	lb_todo_14();
 ?>
@@ -329,17 +335,17 @@
 </p>
 
 <?php
-	function lb_todo_15() {
-		$arr = array( 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье' );
+function lb_todo_15() {
+	$arr = array( 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье' );
 
-		foreach ( $arr as $value ){
-			if( 'Суббота' === $value || 'Воскресенье' === $value ) {
-				echo '<strong>' . $value . '</strong>' . '<br>';
-			}else {
-				echo $value . '<br>';
-			}
+	foreach ( $arr as $value ) {
+		if ( 'Суббота' === $value || 'Воскресенье' === $value ) {
+			echo '<strong>' . $value . '</strong>' . '<br>';
+		} else {
+			echo $value . '<br>';
 		}
 	}
+}
 
 	lb_todo_15();
 ?>
@@ -352,18 +358,18 @@
 </p>
 
 <?php
-	function lb_todo_16() {
-		$arr = array( 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье' );
-		$day = 'Вторник';
+function lb_todo_16() {
+	$arr = array( 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье' );
+	$day = 'Вторник';
 
-		foreach ( $arr as $value ){
-			if( $day === $value) {
-				echo '<i>' . $value . '</i>' . '<br>';
-			}else {
-				echo $value . '<br>';
-			}
+	foreach ( $arr as $value ) {
+		if ( $day === $value ) {
+			echo '<i>' . $value . '</i>' . '<br>';
+		} else {
+			echo $value . '<br>';
 		}
 	}
+}
 
 	lb_todo_16();
 ?>
@@ -375,15 +381,15 @@
 </p>
 
 <?php
-	function lb_todo_17() {
-		$arr = array();
+function lb_todo_17() {
+	$arr = array();
 
-		for ( $i = 1 ; $i <= 100 ; $i++) { 
-			$arr[] += $i;
-		}
-		
-		var_dump($arr);
+	for ( $i = 1; $i <= 100; $i++ ) {
+		$arr[] += $i;
 	}
+
+	var_dump( $arr );
+}
 
 	lb_todo_17();
 ?>
@@ -395,20 +401,24 @@
 </p>
 
 <?php
-	function lb_todo_18() {
-		$arr = ['green' => 'зеленый', 'red' => 'красный', 'blue' => 'голубой'];
-		$en  = [];
-		$ru  = [];
+function lb_todo_18() {
+	$arr = array(
+		'green' => 'зеленый',
+		'red'   => 'красный',
+		'blue'  => 'голубой',
+	);
+	$en  = array();
+	$ru  = array();
 
-		foreach ( $arr as $key => $value ){
-			$en[] = $key;
-			$ru[] = $value;
-		}
-
-		var_dump( $en );
-		var_dump( $ru );
-
+	foreach ( $arr as $key => $value ) {
+		$en[] = $key;
+		$ru[] = $value;
 	}
+
+	var_dump( $en );
+	var_dump( $ru );
+
+}
 
 	lb_todo_18();
 ?>
@@ -422,34 +432,33 @@
 </p>
 
 <?php
-	function lb_todo_19_1() {
-		$num = 1000;
-		$i   = 0;
-		
-		while ( $num > 50 ) {
-			$num /= 2;
+function lb_todo_19_1() {
+	$num = 1000;
+	$i   = 0;
 
-			$i++;
-		}
+	while ( $num > 50 ) {
+		$num /= 2;
 
-		echo $num . '<br>';
-		echo $i   . '<br>';
-
+		$i++;
 	}
 
-	function lb_todo_19_2() {
-		$num = 1000;
+	echo $num . '<br>';
+	echo $i . '<br>';
 
-		for ( $i = 0 ; $num > 50; $i++ ) {
-			$num /= 2;
-		}
+}
 
-		echo $num . '<br>';
-		echo $i   . '<br>';
+function lb_todo_19_2() {
+	$num = 1000;
 
+	for ( $i = 0; $num > 50; $i++ ) {
+		$num /= 2;
 	}
+
+	echo $num . '<br>';
+	echo $i . '<br>';
+
+}
 
 	lb_todo_19_1();
 	lb_todo_19_2();
 ?>
-
