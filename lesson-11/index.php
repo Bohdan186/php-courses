@@ -390,3 +390,59 @@ function lb_todo_19() {
 
 	lb_todo_19();
 ?>
+
+<h2>Завдання 20</h2>
+<p> 
+	Сделайте форму с одним полем ввода, в которое пользователь вводит год.
+	Найдите все пятницы 13-е в этом году. Результат выведите в виде массива дат.
+</p>
+
+<form action="#" method="GET">
+	<input type="text" name="date7" placeholder="2025">
+	<input type="submit" name="btn-7">
+</form>
+
+<?php
+function lb_todo_20() {
+	if ( ! empty( $_GET['date7'] ) && is_numeric( $_GET['date7'] ) ) {
+		$year       = esc_html( $_GET['date7'] );
+		$friday_arr = array();
+
+		for ( $month = 1; $month <= 12; $month++ ) {
+			$count_days = date( 't', mktime( 0, 0, 0, $month, 1, $year ) );
+
+			for ( $day = 1; $day <= $count_days; $day++ ) {
+				$this_date = mktime( 0, 0, 0, $month, $day, $year );
+
+				if ( '13' === date( 'j', $this_date ) && '5' === date( 'w', $this_date ) ) {
+					$friday_arr[] = date( 'd.m.Y', $this_date );
+				}
+			}
+		}
+
+		echo '<pre>';
+		print_r( $friday_arr );
+		echo '</pre>';
+	}
+}
+
+	lb_todo_20();
+?>
+
+<h2>Завдання 21</h2>
+<p> 
+	Узнайте какой день недели был 100 дней назад.
+</p>
+
+<?php
+function lb_todo_21() {
+	$week = array( 'Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота' );
+	$date = date_create( date( 'Y-m-d' ) );
+
+	date_modify( $date, '-100 day' );
+
+	echo $week[ date( 'w', strtotime( date_format( $date, 'd.m.Y' ) ) ) ];
+}
+
+	lb_todo_21();
+?>

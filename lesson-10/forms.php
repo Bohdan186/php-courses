@@ -149,63 +149,68 @@ function lb_todo_4() {
 
 	$get_users_data = file_get_contents( 'db_users.txt' );
 	$users_data     = json_decode( $get_users_data, true );
-	$success        = false;
-	$login          = esc_html($_POST['login4']);
-	$pass           = esc_html($_POST['pass4']);
+	$user_iset      = false;
+	$login          = esc_html( $_POST['login4'] );
+	$pass           = esc_html( $_POST['pass4'] );
 
 	if ( empty( $login ) && empty( $pass ) ) {
-		echo 'введіть логін і пароль';
+		echo 'введіть логін і пароль <br>';
 	} elseif ( empty( $login ) ) {
-		echo 'введіть логін';
+		echo 'введіть логін <br>';
 	} elseif ( empty( $pass ) ) {
-		echo 'введіть пароль';
-	} else {
+		echo 'введіть пароль <br>';
+	}
 
-		foreach ( $users_data as $user ) {
-			if ( $login === $user['name'] && $pass === $user['password'] ) {
-				$success = true;
-			} elseif ( $login === $user['name'] && $pass !== $user['password'] ) {
-				echo 'Пароль Невірний';
+	foreach ( $users_data as $user ) {
+		if ( $login === $user['name'] ) {
+			$user_iset = true;
+			if ( $pass === $user['password'] ) {
+				echo 'Доступ дозволенно <br>';
+			} else {
+				echo 'Пароль Невірний <br>';
 			}
-		}
-
-		if ( $success === true ) {
-			echo 'Доступ дозволенно';
 		}
 	}
 
+	if ( ! empty( $login ) && $user_iset === false ) {
+		echo 'Логін Невірний <br>';
+	}
 }
 
 /*
 	ЗАВДАННЯ 5
 
 	Спросите имя пользователя с помощью формы. Результат запишите в переменную $name.
-	Сделайте так, чтобы после отправки формы значения ее полей не пропадали. 
+	Сделайте так, чтобы после отправки формы значения ее полей не пропадали.
 */
-
 
 function lb_todo_5() {
 	if ( ! isset( $_POST['btn-5'] ) ) {
 		return;
 	}
 
-	$name = esc_html($_POST['name5']);
+	$name = esc_html( $_POST['name5'] );
 
-	if (isset($_POST['name5'])) echo $name;
+	if ( isset( $_POST['name5'] ) ) {
+		echo $name;
+	}
 }
 
-
-function lb_todo_6($item) {
+function lb_todo_6( $item ) {
 	if ( ! isset( $_POST['btn-6'] ) ) {
 		return;
 	}
 
-	$name = esc_html($_POST['name6']);
-	$message = esc_html($_POST['message6']);
+	$name    = esc_html( $_POST['name6'] );
+	$message = esc_html( $_POST['message6'] );
 
-	if($item === 'name'){
-		if (isset($_POST['name6'])) echo $name;
-	}else if($item === 'message') {
-		if (isset($_POST['message6'])) echo $message;
+	if ( $item === 'name' ) {
+		if ( isset( $_POST['name6'] ) ) {
+			echo $name;
+		}
+	} elseif ( $item === 'message' ) {
+		if ( isset( $_POST['message6'] ) ) {
+			echo $message;
+		}
 	}
 }
