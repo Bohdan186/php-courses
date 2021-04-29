@@ -1,0 +1,4 @@
+{
+	"user_1":{"name":"Bohdan", "password":"111"},
+	"user_2": {"name":"Vasya", "password":"12345"}
+}
