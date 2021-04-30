@@ -92,9 +92,9 @@
 
 
 	<form action="" method="POST">
-		<input name="name6" value="<?php lb_todo_6('name') ?>"><br><br>
+		<input name="name6" value="<?php lb_todo_6( 'name' ); ?>"><br><br>
 		<textarea name="message6" cols="30" rows="10">
-			<?php lb_todo_6('message') ?>
+			<?php lb_todo_6( 'message' ); ?>
 		</textarea><br><br>
 		<button name="btn-6">Send</button>
 	</form>

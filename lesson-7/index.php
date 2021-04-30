@@ -420,9 +420,9 @@ function lb_todo_24() {
 
 <?php
 function lb_todo_25() {
-	$str = 'aaa aaa..aaa aaa aaa';
+	$str = '..aaa aaaaa aaa aaa';
 
-	echo strpos( $str, '..' ) ? 'есть' : 'нет';
+	echo strpos( $str, '..' ) || 0 === strpos( $str, '..' ) ? 'есть' : 'нет';
 }
 
 	lb_todo_25();

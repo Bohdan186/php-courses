@@ -40,7 +40,7 @@ function lb_todo_2() {
 
 <?php
 function lb_todo_3() {
-	echo mktime( 0, 0, 0, 12, 31, 2021 );
+	echo mktime( 0, 0, 0, 12, 31, date( 'Y' ) );
 }
 
 	lb_todo_3();
@@ -54,7 +54,7 @@ function lb_todo_3() {
 
 <?php
 function lb_todo_4() {
-	echo mktime( 13, 12, 59, 8, 15, 2000 );
+	echo time() - mktime( 13, 12, 59, 8, 15, 2000 );
 }
 
 	lb_todo_4();
@@ -67,7 +67,7 @@ function lb_todo_4() {
 
 <?php
 function lb_todo_5() {
-	$result = ( time() - mktime( 7, 23, 48, 4, 29, 2021 ) ) / 60 / 60;
+	$result = ( time() - mktime( 7, 23, 48, 4, date( 'j' ), 2021 ) ) / 60 / 60;
 
 	echo round( $result );
 }
