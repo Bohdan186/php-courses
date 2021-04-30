@@ -277,17 +277,22 @@ function lb_get_array_summ( $arr ) {
 }
 
 function lb_get_todo_4() {
-	$result = array();
+	set_time_limit( 0 );
 
-	for ( $i = 2; $i < 10; $i++ ) {
+	$count  = 0;
+	$count2 = 0;
 
-		for ( $j = 0; $j <= lb_get_array_summ( lb_get_divisors( $i ) ); $j++ ) {
+	for ( $i = 1; $i < 1000; $i++ ) {
+		$count = lb_get_array_summ( lb_get_divisors( $i ) );
 
-			if ( lb_get_array_summ( lb_get_divisors( $i ) ) === $j ) {
-				$result[] = $i;
+		for ( $j = 1; $j < 1000; $j++ ) {
+			$count2 = lb_get_array_summ( lb_get_divisors( $j ) );
+
+			if ( $count === $j && $count2 === $i ) {
+				echo $count . ' and ' . $count2 . '<br><br>';
 			}
 		}
 	}
 }
-	// ar( lb_get_todo_4() );
+	lb_get_todo_4();
 ?>
