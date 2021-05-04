@@ -841,17 +841,17 @@ function lb_todo_49() {
 </p>
 
 <?php
-function lb_todo_50() {
+function lb_todo_50($len = 122) {
 	$str = '';
 
-	for ( $i = 97; $i <= 122; $i++ ) {
+	for ( $i = 97; $i <= $i + $len; $i++ ) {
 		$str .= chr( $i );
 	}
 
 	echo str_shuffle( $str );
 }
 
-	lb_todo_50();
+	lb_todo_50(10);
 ?>
 
 <h2>Завдання 51</h2>

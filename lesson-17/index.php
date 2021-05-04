@@ -35,7 +35,7 @@ function lb_get_todo_1( $numb ) {
 </p>
 
 <?php
-function lb_get_todo_2( ...$numbs ) {
+function lb_get_todo_2( $numbs ) {
 	$result = array();
 
 	foreach ( $numbs as $value ) {
@@ -47,7 +47,7 @@ function lb_get_todo_2( ...$numbs ) {
 	return $result;
 }
 
-	ar( lb_get_todo_2( 1, 2, 3, 4, 55, -20 ) );
+	ar( lb_get_todo_2( array( 1, 2, 3, 4, 55, -20 ) ) );
 ?>
 
 <h2>Завдання 3</h2>
@@ -112,7 +112,7 @@ function lb_isEven( $numb ) {
 </p>
 
 <?php
-function lb_get_todo_6( ...$arr ) {
+function lb_get_todo_6( $arr ) {
 	$even_arr = array();
 
 	foreach ( $arr as $value ) {
@@ -124,7 +124,7 @@ function lb_get_todo_6( ...$arr ) {
 	return $even_arr;
 }
 
-	ar( lb_get_todo_6( 1, 2, 3, 4, 5, 6, 7, 8, 9 ) );
+	ar( lb_get_todo_6( array( 1, 2, 3, 4, 5, 6, 7, 8, 9 ) ) );
 ?>
 
 <h2>Завдання 7</h2>

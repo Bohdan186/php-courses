@@ -29,10 +29,10 @@ function lb_todo_1() {
 		$arr[] = array_fill( 0, $i, 'x' );
 	}
 
-	ar( $arr );
+	return $arr;
 }
 
-	echo lb_todo_1();
+	ar( lb_todo_1() );
 ?>
 
 <h2>Завдання 2</h2>
@@ -52,10 +52,10 @@ function lb_todo_2() {
 		}
 	}
 
-	ar( $arr );
+	return $arr;
 }
 
-	echo lb_todo_2();
+	ar( lb_todo_2() );
 ?>
 
 <h2>Завдання 3</h2>
@@ -74,10 +74,10 @@ function lb_todo_3( $sep, $count ) {
 		$arr[ $i ] = $sep;
 	}
 
-	ar( $arr );
+	return $arr;
 }
 
-	echo lb_todo_3( 'x', 5 );
+	ar( lb_todo_3( 'x', 5 ) );
 ?>
 <h2>Завдання 4</h2>
 <p> 
@@ -102,7 +102,7 @@ function lb_todo_4() {
 		}
 	}
 
-	echo $res;
+	return $res;
 }
 
 	echo lb_todo_4();
@@ -123,7 +123,7 @@ function lb_todo_5() {
 		$summ += array_sum( $el );
 	}
 
-	echo $summ;
+	return $summ;
 }
 
 	echo lb_todo_5();
@@ -147,7 +147,7 @@ function lb_todo_6() {
 		}
 	}
 
-	echo $summ;
+	return $summ;
 }
 
 	echo lb_todo_6();

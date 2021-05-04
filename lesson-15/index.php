@@ -11,7 +11,7 @@ function lb_todo_1() {
 		$str .= $i;
 	}
 
-	echo $str;
+	return $str;
 }
 
 	echo lb_todo_1();
@@ -30,7 +30,7 @@ function lb_todo_2() {
 		$str .= $i;
 	}
 
-	echo $str;
+	return $str;
 }
 
 	echo lb_todo_2();
@@ -49,7 +49,7 @@ function lb_todo_3() {
 		$str .= $i . '-';
 	}
 
-	echo $str;
+	return $str;
 }
 
 	echo lb_todo_3();
@@ -69,7 +69,7 @@ function lb_todo_4() {
 	}
 }
 
-	echo lb_todo_4();
+	lb_todo_4();
 ?>
 
 <h2>Завдання 5</h2>
@@ -89,7 +89,7 @@ function lb_todo_5() {
 	}
 }
 
-	echo lb_todo_5();
+	lb_todo_5();
 ?>
 
 <h2>Завдання 6</h2>
@@ -110,5 +110,5 @@ function lb_todo_6() {
 	}
 }
 
-	echo lb_todo_6();
+	lb_todo_6();
 ?>
