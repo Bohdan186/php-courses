@@ -1,17 +1,19 @@
 <?php
 /**
- * Description of what this module (or file) is doing.
+ * Tasks for basic working with SQL databases in PHP
  *
  * @package lessons-35
  */
 
 /**
  * Ar
+ * 
+ * The function is intended for output of arrays.
  *
- * @param  mixed $data comment about this variable.
- * @param  mixed $production comment about this variable.
+ * @param  mixed $data - Accepts the mass to be output.
+ * @param  bool $production - Takes a Boolean value. If the "True" parameter then the output of the array will be hidden,
+ * 							  to view it you will need to add "?x" to the url. Default parameter = "FALSE".
  *
- * @return void
  */
 function ar( $data, $production = false ) {
 	if ( $production ) {
@@ -30,21 +32,32 @@ function ar( $data, $production = false ) {
 /**
  * Esc_html
  *
- * @param  string $str - string.
+ * Shields all threatening characters.
+ * 
+ * @param  string $str - The tape to be shielded.
  *
  * @return statement
  */
 function esc_html( $str ) {
-	$result = htmlspecialchars( trim( $str ) );
-
-	return $result;
+	return htmlspecialchars( trim( $str ) );
 }
 
-function connect_to_db() {
-	$user = 'root';
-	$pass = 'root';
+$pdo = new PDO( 'mysql:host=localhost;dbname=lb_database', 'root', 'root' );
 
-	return $lb_database = new PDO( 'mysql:host=localhost;dbname=lb_database', $user, $pass );
+function lb_get_data($sql, $values) {
+	global $pdo;
+
+	$result = $pdo->prepare( $sql );
+
+	$result->execute( $values );
+
+	ar($result->fetchAll(PDO::FETCH_ASSOC));
+}
+
+function lb_change_data( $sql ) {
+	global $pdo;
+
+	$pdo->exec( $sql );
 }
 ?>
 
@@ -54,19 +67,7 @@ function connect_to_db() {
 </p>
 
 <?php
-/**
- * Lb_todo_1
- *
- * @return void
- */
-function lb_todo_1() {
-	$lb_database = connect_to_db();
-
-	foreach ( $lb_database->query( 'SELECT * FROM workers WHERE id=3' ) as $row ) {
-		ar( $row );
-	}
-}
-	lb_todo_1();
+	lb_get_data('SELECT * FROM workers WHERE id = ?', array( 3 ) );
 ?>
 
 <h2>Завдання 2</h2>
@@ -75,19 +76,7 @@ function lb_todo_1() {
 </p>
 
 <?php
-/**
- * Lb_todo_2
- *
- * @return void
- */
-function lb_todo_2() {
-	$lb_database = connect_to_db();
-
-	foreach ( $lb_database->query( 'SELECT * FROM workers WHERE salary=1000' ) as $row ) {
-		ar( $row );
-	}
-}
-	lb_todo_2();
+	lb_get_data('SELECT * FROM workers WHERE salary = ?', array( 1000 ) );
 ?>
 
 <h2>Завдання 3</h2>
@@ -96,19 +85,7 @@ function lb_todo_2() {
 </p>
 
 <?php
-/**
- * Lb_todo_3
- *
- * @return void
- */
-function lb_todo_3() {
-	$lb_database = connect_to_db();
-
-	foreach ( $lb_database->query( 'SELECT * FROM workers WHERE age=23' ) as $row ) {
-		ar( $row );
-	}
-}
-	lb_todo_3();
+	lb_get_data('SELECT * FROM workers WHERE age = ?', array( 23 ) );
 ?>
 
 <h2>Завдання 4</h2>
@@ -117,19 +94,7 @@ function lb_todo_3() {
 </p>
 
 <?php
-/**
- * Lb_todo_4
- *
- * @return void
- */
-function lb_todo_4() {
-	$lb_database = connect_to_db();
-
-	foreach ( $lb_database->query( 'SELECT * FROM workers WHERE salary > 400' ) as $row ) {
-		ar( $row );
-	}
-}
-	lb_todo_4();
+	lb_get_data('SELECT * FROM workers WHERE salary > ?', array( 400 ) );
 ?>
 
 <h2>Завдання 5</h2>
@@ -138,19 +103,7 @@ function lb_todo_4() {
 </p>
 
 <?php
-/**
- * Lb_todo_5
- *
- * @return void
- */
-function lb_todo_5() {
-	$lb_database = connect_to_db();
-
-	foreach ( $lb_database->query( 'SELECT * FROM workers WHERE salary >= 500' ) as $row ) {
-		ar( $row );
-	}
-}
-	lb_todo_5();
+	lb_get_data('SELECT * FROM workers WHERE salary >= ?', array( 500 ) );
 ?>
 
 <h2>Завдання 6</h2>
@@ -159,19 +112,7 @@ function lb_todo_5() {
 </p>
 
 <?php
-/**
- * Lb_todo_6
- *
- * @return void
- */
-function lb_todo_6() {
-	$lb_database = connect_to_db();
-
-	foreach ( $lb_database->query( 'SELECT * FROM workers WHERE salary!=500' ) as $row ) {
-		ar( $row );
-	}
-}
-	lb_todo_6();
+	lb_get_data('SELECT * FROM workers WHERE salary != ?', array( 500 ) );
 ?>
 
 <h2>Завдання 7</h2>
@@ -180,19 +121,7 @@ function lb_todo_6() {
 </p>
 
 <?php
-/**
- * Lb_todo_7
- *
- * @return void
- */
-function lb_todo_7() {
-	$lb_database = connect_to_db();
-
-	foreach ( $lb_database->query( 'SELECT * FROM workers WHERE salary<=900' ) as $row ) {
-		ar( $row );
-	}
-}
-	lb_todo_7();
+	lb_get_data('SELECT * FROM workers WHERE salary <= ?', array( 900 ) );
 ?>
 
 <h2>Завдання 8</h2>
@@ -201,19 +130,7 @@ function lb_todo_7() {
 </p>
 
 <?php
-/**
- * Lb_todo_8
- *
- * @return void
- */
-function lb_todo_8() {
-	$lb_database = connect_to_db();
-
-	foreach ( $lb_database->query( 'SELECT * FROM workers WHERE name="Вася"' ) as $row ) {
-		echo 'Васе ' . $row['age'] . ' года, его зарплата = ' . $row['salary'] . '$';
-	}
-}
-	lb_todo_8();
+	lb_get_data('SELECT salary, age FROM workers WHERE name = ?', array( 'Вася' ) );
 ?>
 
 <h2>Завдання 9</h2>
@@ -222,19 +139,7 @@ function lb_todo_8() {
 </p>
 
 <?php
-/**
- * Lb_todo_9
- *
- * @return void
- */
-function lb_todo_9() {
-	$lb_database = connect_to_db();
-
-	foreach ( $lb_database->query( 'SELECT * FROM workers WHERE age>25 AND age<=28' ) as $row ) {
-		ar( $row );
-	}
-}
-	lb_todo_9();
+	lb_get_data('SELECT * FROM workers WHERE age > ? AND age <= ?', array( 25, 28 ) );
 ?>
 
 <h2>Завдання 10</h2>
@@ -243,19 +148,7 @@ function lb_todo_9() {
 </p>
 
 <?php
-/**
- * Lb_todo_10
- *
- * @return void
- */
-function lb_todo_10() {
-	$lb_database = connect_to_db();
-
-	foreach ( $lb_database->query( 'SELECT * FROM workers WHERE name="Петя"' ) as $row ) {
-		ar( $row );
-	}
-}
-	lb_todo_10();
+	lb_get_data('SELECT * FROM workers WHERE name = ?', array( 'Петя' ) );
 ?>
 
 <h2>Завдання 11</h2>
@@ -264,19 +157,7 @@ function lb_todo_10() {
 </p>
 
 <?php
-/**
- * Lb_todo_11
- *
- * @return void
- */
-function lb_todo_11() {
-	$lb_database = connect_to_db();
-
-	foreach ( $lb_database->query( 'SELECT * FROM workers WHERE name="Петя" AND name="Вася"' ) as $row ) {
-		ar( $row );
-	}
-}
-	lb_todo_11();
+	lb_get_data('SELECT * FROM workers WHERE name = ? OR name = ?', array( 'Петя', 'Вася' ) );
 ?>
 
 <h2>Завдання 12</h2>
@@ -285,19 +166,7 @@ function lb_todo_11() {
 </p>
 
 <?php
-/**
- * Lb_todo_12
- *
- * @return void
- */
-function lb_todo_12() {
-	$lb_database = connect_to_db();
-
-	foreach ( $lb_database->query( 'SELECT * FROM workers WHERE name!="Петя"' ) as $row ) {
-		ar( $row );
-	}
-}
-	lb_todo_12();
+	lb_get_data('SELECT * FROM workers WHERE name != ?', array( 'Петя' ) );
 ?>
 
 <h2>Завдання 13</h2>
@@ -306,19 +175,7 @@ function lb_todo_12() {
 </p>
 
 <?php
-/**
- * Lb_todo_13
- *
- * @return void
- */
-function lb_todo_13() {
-	$lb_database = connect_to_db();
-
-	foreach ( $lb_database->query( 'SELECT * FROM workers WHERE age=27 AND salary=1000' ) as $row ) {
-		ar( $row );
-	}
-}
-	lb_todo_13();
+	lb_get_data('SELECT * FROM workers WHERE age = ? OR salary = ?', array( 27, 1000 ) );
 ?>
 
 <h2>Завдання 14</h2>
@@ -327,19 +184,7 @@ function lb_todo_13() {
 </p>
 
 <?php
-/**
- * Lb_todo_14
- *
- * @return void
- */
-function lb_todo_14() {
-	$lb_database = connect_to_db();
-
-	foreach ( $lb_database->query( 'SELECT * FROM workers WHERE ( age>=23 AND age<27 ) OR salary =1000' ) as $row ) {
-		ar( $row );
-	}
-}
-	lb_todo_14();
+	lb_get_data('SELECT * FROM workers WHERE ( age >= ? AND age < ? ) OR salary = ?', array( 23, 27, 1000 ) );
 ?>
 
 <h2>Завдання 15</h2>
@@ -348,19 +193,7 @@ function lb_todo_14() {
 </p>
 
 <?php
-/**
- * Lb_todo_15
- *
- * @return void
- */
-function lb_todo_15() {
-	$lb_database = connect_to_db();
-
-	foreach ( $lb_database->query( 'SELECT * FROM workers WHERE ( age>23 AND age<27 ) OR ( salary>400 AND salary<1000' ) as $row ) {
-		ar( $row );
-	}
-}
-	lb_todo_15();
+	lb_get_data('SELECT * FROM workers WHERE ( age > ? AND age < ? ) OR ( salary > ? AND salary < ? )', array( 23, 27, 400, 1000 ) );
 ?>
 
 <h2>Завдання 16</h2>
@@ -369,19 +202,7 @@ function lb_todo_15() {
 </p>
 
 <?php
-/**
- * Lb_todo_16
- *
- * @return void
- */
-function lb_todo_16() {
-	$lb_database = connect_to_db();
-
-	foreach ( $lb_database->query( 'SELECT * FROM workers WHERE age != 27 OR salary != 400' ) as $row ) {
-		ar( $row );
-	}
-}
-	lb_todo_16();
+	lb_get_data('SELECT * FROM workers WHERE age= ? OR salary != ?', array( 27, 400 ) );
 ?>
 
 <h2>Завдання 17</h2>
@@ -390,20 +211,7 @@ function lb_todo_16() {
 </p>
 
 <?php
-/**
- * Lb_todo_17
- *
- * @return void
- */
-function lb_todo_17() {
-	$lb_database = connect_to_db();
-
-	$lb_database->query( 'INSERT INTO workers SET name="Никита", age=26, salary=300' );
-}
-	// lb_todo_17();
-
-
-	$lb_database = null;
+	// lb_change_data( 'INSERT INTO workers SET name="Никита", age=26, salary=300' );
 ?>
 
 <h2>Завдання 18</h2>
@@ -412,20 +220,7 @@ function lb_todo_17() {
 </p>
 
 <?php
-/**
- * Lb_todo_18
- *
- * @return void
- */
-function lb_todo_18() {
-	$lb_database = connect_to_db();
-
-	$lb_database->query( 'INSERT INTO workers (name, age, salary) VALUES ("Светлана", 1, 1200)' );
-}
-	// lb_todo_18();
-
-
-	$lb_database = null;
+	// lb_change_data( 'INSERT INTO workers (name, age, salary) VALUES ("Светлана", 1, 1200)' );
 ?>
 
 <h2>Завдання 19</h2>
@@ -435,23 +230,7 @@ function lb_todo_18() {
 </p>
 
 <?php
-/**
- * Lb_todo_19
- *
- * @return void
- */
-function lb_todo_19() {
-	$lb_database = connect_to_db();
-
-	$lb_database->query(
-		'INSERT INTO workers (name, age, salary)
-	VALUES ("Ярослава", 30, 1200), ("Петро", 31, 1000)'
-	);
-}
-	// lb_todo_19();
-
-
-	$lb_database = null;
+	// lb_change_data( 'INSERT INTO workers (name, age, salary) VALUES ("Ярослава", 30, 1200), ("Петро", 31, 1000)' );
 ?>
 
 <h2>Завдання 20</h2>
@@ -460,20 +239,7 @@ function lb_todo_19() {
 </p>
 
 <?php
-/**
- * Lb_todo_20
- *
- * @return void
- */
-function lb_todo_20() {
-	$lb_database = connect_to_db();
-
-	$lb_database->query( 'DELETE FROM workers WHERE id=7' );
-}
-	// lb_todo_20();
-
-
-	$lb_database = null;
+	// lb_change_data( 'DELETE FROM workers WHERE id=7' );
 ?>
 
 <h2>Завдання 21</h2>
@@ -482,20 +248,7 @@ function lb_todo_20() {
 </p>
 
 <?php
-/**
- * Lb_todo_21
- *
- * @return void
- */
-function lb_todo_21() {
-	$lb_database = connect_to_db();
-
-	$lb_database->query( 'DELETE FROM workers WHERE name="Коля"' );
-}
-	// lb_todo_21();
-
-
-	$lb_database = null;
+	// lb_change_data( 'DELETE FROM workers WHERE name="Коля"' );
 ?>
 
 <h2>Завдання22</h2>
@@ -504,20 +257,7 @@ function lb_todo_21() {
 </p>
 
 <?php
-/**
- * Lb_todo_22
- *
- * @return void
- */
-function lb_todo_22() {
-	$lb_database = connect_to_db();
-
-	$lb_database->query( 'DELETE FROM workers WHERE age=23' );
-}
-	// lb_todo_22();
-
-
-	$lb_database = null;
+	// lb_change_data( 'DELETE FROM workers WHERE age=23' );
 ?>
 
 <h2>Завдання23</h2>
@@ -526,18 +266,41 @@ function lb_todo_22() {
 </p>
 
 <?php
-/**
- * Lb_todo_23
- *
- * @return void
- */
-function lb_todo_23() {
-	$lb_database = connect_to_db();
+	// lb_change_data( 'UPDATE workers SET salary=400 WHERE name="Вася"' );
+?>
 
-	$lb_database->query( 'UPDATE workers SET salary=200 WHERE name="Вася"' );
-}
-	lb_todo_23();
+<h2>Завдання24</h2>
+<p>
+	Работнику с id=4 поставьте возраст 35 лет.
+</p>
 
+<?php
+	lb_change_data( 'UPDATE workers SET age=35 WHERE id=4' );
+?>
 
-	$lb_database = null;
+<h2>Завдання25</h2>
+<p>
+	Всем, у кого зарплата 500$ сделайте ее 700$.
+</p>
+
+<?php
+	lb_change_data( 'UPDATE workers SET salary=700 WHERE salary=500' );
+?>
+
+<h2>Завдання26</h2>
+<p>
+	Работникам с id больше 2 и меньше 5 включительно поставьте возраст 23.
+</p>
+
+<?php
+	lb_change_data( 'UPDATE workers SET age=23 WHERE id > 2 AND id <= 5' );
+?>
+
+<h2>Завдання27</h2>
+<p>
+	Поменяйте Васю на Женю и прибавьте ему зарплату до 900$.
+</p>
+
+<?php
+	lb_change_data( 'UPDATE workers SET name = "Женя", salary = 900  WHERE name = "Вася"' );
 ?>
