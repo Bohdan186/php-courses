@@ -7,13 +7,12 @@
 
 /**
  * Ar
- * 
+ *
  * The function is intended for output of arrays.
  *
  * @param  mixed $data - Accepts the mass to be output.
- * @param  bool $production - Takes a Boolean value. If the "True" parameter then the output of the array will be hidden,
- * 							  to view it you will need to add "?x" to the url. Default parameter = "FALSE".
- *
+ * @param  bool  $production - Takes a Boolean value. If the "True" parameter then the output of the array will be hidden,
+ *                             to view it you will need to add "?x" to the url. Default parameter = "FALSE".
  */
 function ar( $data, $production = false ) {
 	if ( $production ) {
@@ -33,7 +32,7 @@ function ar( $data, $production = false ) {
  * Esc_html
  *
  * Shields all threatening characters.
- * 
+ *
  * @param  string $str - The tape to be shielded.
  *
  * @return statement
@@ -44,16 +43,33 @@ function esc_html( $str ) {
 
 $pdo = new PDO( 'mysql:host=localhost;dbname=lb_database', 'root', 'root' );
 
-function lb_get_data($sql, $values) {
+/**
+ * Lb_get_data
+ *
+ * The function outputs data from the database using the "ar" function.
+ * Accepts two parameters, a database query using pseudo-variables, and an array of variable values
+ *
+ * @param  string $sql - string query the database.
+ * @param  array  $values - an array with values of variables.
+ */
+function lb_get_data( $sql, $values ) {
 	global $pdo;
 
 	$result = $pdo->prepare( $sql );
 
 	$result->execute( $values );
 
-	ar($result->fetchAll(PDO::FETCH_ASSOC));
+	ar( $result->fetchAll( PDO::FETCH_ASSOC ) );
 }
 
+/**
+ * Lb_change_data
+ * 
+ * The function takes a query to the database and executes it using PDO-> exec.
+ * The query does not have to accept data, only change it in the database
+ *
+ * @param  string $sql - string query the database.
+ */
 function lb_change_data( $sql ) {
 	global $pdo;
 
@@ -67,7 +83,7 @@ function lb_change_data( $sql ) {
 </p>
 
 <?php
-	lb_get_data('SELECT * FROM workers WHERE id = ?', array( 3 ) );
+	lb_get_data( 'SELECT * FROM workers WHERE id = ?', array( 3 ) );
 ?>
 
 <h2>Завдання 2</h2>
@@ -76,7 +92,7 @@ function lb_change_data( $sql ) {
 </p>
 
 <?php
-	lb_get_data('SELECT * FROM workers WHERE salary = ?', array( 1000 ) );
+	lb_get_data( 'SELECT * FROM workers WHERE salary = ?', array( 1000 ) );
 ?>
 
 <h2>Завдання 3</h2>
@@ -85,7 +101,7 @@ function lb_change_data( $sql ) {
 </p>
 
 <?php
-	lb_get_data('SELECT * FROM workers WHERE age = ?', array( 23 ) );
+	lb_get_data( 'SELECT * FROM workers WHERE age = ?', array( 23 ) );
 ?>
 
 <h2>Завдання 4</h2>
@@ -94,7 +110,7 @@ function lb_change_data( $sql ) {
 </p>
 
 <?php
-	lb_get_data('SELECT * FROM workers WHERE salary > ?', array( 400 ) );
+	lb_get_data( 'SELECT * FROM workers WHERE salary > ?', array( 400 ) );
 ?>
 
 <h2>Завдання 5</h2>
@@ -103,7 +119,7 @@ function lb_change_data( $sql ) {
 </p>
 
 <?php
-	lb_get_data('SELECT * FROM workers WHERE salary >= ?', array( 500 ) );
+	lb_get_data( 'SELECT * FROM workers WHERE salary >= ?', array( 500 ) );
 ?>
 
 <h2>Завдання 6</h2>
@@ -112,7 +128,7 @@ function lb_change_data( $sql ) {
 </p>
 
 <?php
-	lb_get_data('SELECT * FROM workers WHERE salary != ?', array( 500 ) );
+	lb_get_data( 'SELECT * FROM workers WHERE salary != ?', array( 500 ) );
 ?>
 
 <h2>Завдання 7</h2>
@@ -121,7 +137,7 @@ function lb_change_data( $sql ) {
 </p>
 
 <?php
-	lb_get_data('SELECT * FROM workers WHERE salary <= ?', array( 900 ) );
+	lb_get_data( 'SELECT * FROM workers WHERE salary <= ?', array( 900 ) );
 ?>
 
 <h2>Завдання 8</h2>
@@ -130,7 +146,7 @@ function lb_change_data( $sql ) {
 </p>
 
 <?php
-	lb_get_data('SELECT salary, age FROM workers WHERE name = ?', array( 'Вася' ) );
+	lb_get_data( 'SELECT salary, age FROM workers WHERE name = ?', array( 'Вася' ) );
 ?>
 
 <h2>Завдання 9</h2>
@@ -139,7 +155,7 @@ function lb_change_data( $sql ) {
 </p>
 
 <?php
-	lb_get_data('SELECT * FROM workers WHERE age > ? AND age <= ?', array( 25, 28 ) );
+	lb_get_data( 'SELECT * FROM workers WHERE age > ? AND age <= ?', array( 25, 28 ) );
 ?>
 
 <h2>Завдання 10</h2>
@@ -148,7 +164,7 @@ function lb_change_data( $sql ) {
 </p>
 
 <?php
-	lb_get_data('SELECT * FROM workers WHERE name = ?', array( 'Петя' ) );
+	lb_get_data( 'SELECT * FROM workers WHERE name = ?', array( 'Петя' ) );
 ?>
 
 <h2>Завдання 11</h2>
@@ -157,7 +173,7 @@ function lb_change_data( $sql ) {
 </p>
 
 <?php
-	lb_get_data('SELECT * FROM workers WHERE name = ? OR name = ?', array( 'Петя', 'Вася' ) );
+	lb_get_data( 'SELECT * FROM workers WHERE name = ? OR name = ?', array( 'Петя', 'Вася' ) );
 ?>
 
 <h2>Завдання 12</h2>
@@ -166,7 +182,7 @@ function lb_change_data( $sql ) {
 </p>
 
 <?php
-	lb_get_data('SELECT * FROM workers WHERE name != ?', array( 'Петя' ) );
+	lb_get_data( 'SELECT * FROM workers WHERE name != ?', array( 'Петя' ) );
 ?>
 
 <h2>Завдання 13</h2>
@@ -175,7 +191,7 @@ function lb_change_data( $sql ) {
 </p>
 
 <?php
-	lb_get_data('SELECT * FROM workers WHERE age = ? OR salary = ?', array( 27, 1000 ) );
+	lb_get_data( 'SELECT * FROM workers WHERE age = ? OR salary = ?', array( 27, 1000 ) );
 ?>
 
 <h2>Завдання 14</h2>
@@ -184,7 +200,7 @@ function lb_change_data( $sql ) {
 </p>
 
 <?php
-	lb_get_data('SELECT * FROM workers WHERE ( age >= ? AND age < ? ) OR salary = ?', array( 23, 27, 1000 ) );
+	lb_get_data( 'SELECT * FROM workers WHERE ( age >= ? AND age < ? ) OR salary = ?', array( 23, 27, 1000 ) );
 ?>
 
 <h2>Завдання 15</h2>
@@ -193,7 +209,7 @@ function lb_change_data( $sql ) {
 </p>
 
 <?php
-	lb_get_data('SELECT * FROM workers WHERE ( age > ? AND age < ? ) OR ( salary > ? AND salary < ? )', array( 23, 27, 400, 1000 ) );
+	lb_get_data( 'SELECT * FROM workers WHERE ( age > ? AND age < ? ) OR ( salary > ? AND salary < ? )', array( 23, 27, 400, 1000 ) );
 ?>
 
 <h2>Завдання 16</h2>
@@ -202,7 +218,7 @@ function lb_change_data( $sql ) {
 </p>
 
 <?php
-	lb_get_data('SELECT * FROM workers WHERE age= ? OR salary != ?', array( 27, 400 ) );
+	lb_get_data( 'SELECT * FROM workers WHERE age= ? OR salary != ?', array( 27, 400 ) );
 ?>
 
 <h2>Завдання 17</h2>
