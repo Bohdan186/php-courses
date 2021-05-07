@@ -1,3 +1,10 @@
+<?php
+require_once 'php/function.php';
+delete_task();
+edit_task();
+checked_task();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,44 +19,26 @@
 		<div class="container">
 
 			<div class="row">
-				<div class="main-wrapper offset-lg-3 col-lg-6">
+				<div class="main-wrapper offset-lg-2 col-lg-8">
+					<?php echo check_add_task_inputs(); ?>
 
-					<div class="input-group mb-4">
-						<input type="text" class="form-control" placeholder="Enter your task" aria-label="Enter your task" aria-describedby="basic-addon2">
-						<div class="input-group-append">
-							<button class="btn btn-success" type="button">Add task</button>
+					<form action="#" method="post">
+						<div class="input-group mb-4">
+							<input type="text" name="add-task-input" class="form-control" placeholder="Enter your task" aria-label="Enter your task" aria-describedby="basic-addon2">
+							<input name="add-task-deadline" class="form-control" type="date" id="example-date-input">
+							<div class="input-group-append">
+								<button name="add-task-button" class="btn btn-success">Add task</button>
+							</div>
 						</div>
-					</div>
+					</form>
 
 				</div>
 			</div>
 
 			<div class="row">
-				<div class="show-tasks offset-lg-3 col-lg-6">
+				<div class="show-tasks offset-lg-2 col-lg-8">
 
-					<div class="task input-group-text">
-						<div class="task-wrapper">
-							<input type="checkbox" aria-label="Checkbox for following text input">
-							<input type="text" class="form-control" aria-label="Text input with checkbox" value="Task value">
-						</div>
-
-						<div class="button-wrapper">
-							<button type="button" class="btn btn-warning btn-sm">Edit</button>
-							<button type="button" class="btn btn-danger btn-sm">Delete</button>
-						</div>
-					</div>
-
-					<div class="task input-group-text">
-						<div class="task-wrapper">
-							<input type="checkbox" aria-label="Checkbox for following text input">
-							<input type="text" class="form-control" aria-label="Text input with checkbox" value="Task value" disabled>
-						</div>
-
-						<div class="button-wrapper">
-							<button type="button" class="btn btn-warning btn-sm">Edit</button>
-							<button type="button" class="btn btn-danger btn-sm">Delete</button>
-						</div>
-					</div>
+					<?php get_tasks(); ?>
 
 				</div>
 			</div>
