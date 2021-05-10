@@ -1,86 +1,101 @@
 <?php
 require_once 'helpers.php';
 
+$pdo = new PDO( 'mysql:host=192.168.1.85;dbname=to-do', 'bohdan', 'bohdan' );
+
+/**
+ * Check_add_task_inputs
+ *
+ */
 function check_add_task_inputs() {
-	if ( ! isset( $_POST['add-task-button'] ) || ( ! empty( $_POST['add-task-input'] ) && ! empty( $_POST['add-task-deadline'] ) ) ) {
+	if ( ! isset( $_POST['add-task-button'] ) ) {
 		return;
 	}
-
-	$error_message = '';
 
 	if ( empty( $_POST['add-task-input'] ) && empty( $_POST['add-task-deadline'] ) ) {
-		$error_message = 'Введіть завдання та встановіть дедлайн !';
-	} elseif ( empty( $_POST['add-task-input'] ) ) {
-		$error_message = 'Введіть завдання !';
-	} elseif ( empty( $_POST['add-task-deadline'] ) ) {
-		$error_message = 'Встановіть дедлайн !';
-	}
-
-	$error_allert = "
-		<div class='alert alert-danger' role='alert'>
-			$error_message
-		</div>
-	";
-
-	return $error_allert;
-}
-
-function add_task() {
-	if ( ! isset( $_POST['add-task-button'] ) || empty( $_POST['add-task-input'] ) || empty( $_POST['add-task-deadline'] ) ) {
-		return;
-	}
-
-	$sql = 'INSERT INTO `tasks` ( `task`, `date-create`, `date-deadline` ) VALUES ( ?, ?, ? )';
-
-	$bind_value = array(
-		esc_html( $_POST['add-task-input'] ),
-		date( 'Y-m-d', time() ),
-		esc_html( $_POST['add-task-deadline'] ),
-	);
-
-	$bind_value_types = array(
-		PDO::PARAM_STR,
-	);
-
-	lb_db_query( $sql, 'change', $bind_value, $bind_value_types );
-}
-add_task();
-
-function get_tasks() {
-	$sql = 'SELECT * FROM tasks';
-
-	$tasks_data = lb_db_query( $sql, 'get' );
-
-	foreach ( $tasks_data as $value ) {
-		$id            = $value['ID'];
-		$task          = $value['task'];
-		$checked       = $value['checked'];
-		$valid_checked = '';
-
-		if ( $checked ) {
-			$valid_checked = 'checked="checked"';
-		}
-
 		?>
-		<form action="#" method="get">
-			<div class="task input-group-text">
-				<div class="task-wrapper">
-					<input name="task-value" type="text" class="form-control" aria-label="Text input with checkbox" value="<?php echo $task; ?>">
-				</div>
-
-				<div class="button-wrapper">
-					<a href="?id=<?php echo $value['ID']; ?>&checked=<?php echo $value['checked']; ?>" class="btn btn-success btn-sm">Done</a>
-					
-					<button name="edit" value="<?php echo $value['ID']; ?>" class="btn btn-warning btn-sm">Edit</button>
-					<a href="?delete=<?php echo $value['ID']; ?>" class="btn btn-danger btn-sm">Delete</a>
-					
-				</div>
+			<div class='alert alert-danger' role='alert'>
+				'Введіть завдання та встановіть дедлайн !'
 			</div>
-		</form>
+		<?php
+	} elseif ( empty( $_POST['add-task-input'] ) ) {
+		?>
+			<div class='alert alert-danger' role='alert'>
+				'Введіть завдання !'
+			</div>
+		<?php
+	} elseif ( empty( $_POST['add-task-deadline'] ) ) {
+		?>
+			<div class='alert alert-danger' role='alert'>
+				'Встановіть дедлайн !'
+			</div>
+		<?php
+	} elseif ( time() >= strtotime( $_POST['add-task-deadline'] ) ) {
+		?>
+			<div class='alert alert-danger' role='alert'>
+				'Дедлайн повинний бути в майбутньому !'
+			</div>
 		<?php
 	}
 }
 
+/**
+ * Add_task
+ *
+ * @return void
+ */
+function add_task() {
+	if ( ! isset( $_POST['add-task-button'] ) || empty( $_POST['add-task-input'] ) || empty( $_POST['add-task-deadline'] ) || time() >= strtotime( $_POST['add-task-deadline'] ) ) {
+		return;
+	}
+
+	$task     = esc_html( $_POST['add-task-input'] );
+	$deadline = esc_html( $_POST['add-task-deadline'] );
+
+	global $pdo;
+	$result = $pdo->prepare( 'INSERT INTO `tasks` ( `task`, `deadline` ) VALUES ( :task, :deadline )' );
+
+	$result->bindParam( ':task', $task );
+	$result->bindParam( ':deadline', $deadline );
+
+	$result->execute();
+}
+
+/**
+ * Get_tasks
+ *
+ */
+function get_tasks() {
+	global $pdo;
+
+	$result = $pdo->prepare( 'SELECT * FROM tasks' );
+
+	$result->execute();
+	$tasks_data = $result->fetchAll( PDO::FETCH_ASSOC );
+
+	foreach ( $tasks_data as $value ) {
+		?>
+		<div class="task input-group-text <?php echo '1' === $value['checked'] ? 'alert-success' : ''; ?> <?php echo time() >= strtotime( $value['deadline']) ? 'alert-danger' : '' ; ?>">
+			<div class="task-wrapper">
+				<h4><?php echo $value['task']; ?></h4>
+			</div>
+
+			<div class="button-wrapper">
+				<a href="?id=<?php echo $value['ID']; ?>&checked=<?php echo $value['checked']; ?>" class="btn btn-success btn-sm">Done</a>
+
+				<a href="?edit=<?php echo $value['ID']; ?>" class="btn btn-warning btn-sm">Edit</a>
+
+				<a href="?delete=<?php echo $value['ID']; ?>" class="btn btn-danger btn-sm">Delete</a>
+			</div>
+		</div>
+		<?php
+	}
+}
+
+/**
+ * Delete_task
+ *
+ */
 function delete_task() {
 	if ( ! isset( $_GET['delete'] ) ) {
 		return;
@@ -88,45 +103,120 @@ function delete_task() {
 
 	$id = esc_html( $_GET['delete'] );
 
-	$sql              = 'DELETE FROM tasks WHERE id = ?';
-	$bind_value       = array( $id );
-	$bind_value_types = array( PDO::PARAM_INT );
+	global $pdo;
+	$result = $pdo->prepare( 'DELETE FROM tasks WHERE id = :id' );
 
-	lb_db_query( $sql, 'change', $bind_value, $bind_value_types );
+	$result->bindParam( ':id', $id );
+
+	$result->execute();
 
 	header( 'Location: index.php' );
 }
 
+/**
+ * Edit_task
+ *
+ */
 function edit_task() {
-	if ( ! isset( $_GET['edit'] ) || empty( $_GET['task-value'] ) ) {
+	if ( ! isset( $_GET['edit'] ) ) {
 		return;
 	}
 
-	$id         = esc_html( $_GET['edit'] );
-	$task_value = esc_html( $_GET['task-value'] );
+	$id          = esc_html( $_GET['edit'] );
+	$tasks_value = '';
 
-	$sql              = 'UPDATE tasks SET `task`= ? WHERE `id` = ?';
-	$bind_value       = array( $task_value, $id );
-	$bind_value_types = array( PDO::PARAM_STR, PDO::PARAM_INT );
+	global $pdo;
 
-	lb_db_query( $sql, 'change', $bind_value, $bind_value_types );
+	$result = $pdo->prepare( 'SELECT * FROM tasks WHERE id = :id' );
+
+	$result->bindParam( ':id', $id );
+
+	$result->execute();
+
+	$tasks_data = $result->fetchAll( PDO::FETCH_ASSOC );
+
+	foreach ( $tasks_data as $value ) {
+		$task_id    = $value['ID'];
+		$task_value = $value['task'];
+		$deadline   = $value['deadline'];
+	}
+
+	edit_form( $task_id, $task_value, $deadline );
+}
+
+/**
+ * Edit_form
+ *
+ * @param  mixed $task_id - id.
+ * @param  mixed $task_value - value.
+ * @param  mixed $deadline - deadline.
+ */
+function edit_form( $task_id, $task_value, $deadline ) {
+	?>
+		<div class="edit-todo-bg"></div>
+		<div class="edit-todo-wrapper">
+			<div class="edit-todo-inner">
+				<form action="#" method="post">
+					<div class="input-group">
+						<input type="hidden" name="edit-id" value="<?php echo $task_id; ?>">
+						<input type="text" name="edit-value" value="<?php echo $task_value; ?>">
+						<input type="date" name="edit-deadline" value="<?php echo $deadline; ?>">
+			
+						<div class="input-group-append">			
+							<button name="save-edit" class="btn btn-success">Save</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>	
+	<?php
+}
+
+/**
+ * Save_edit
+ *
+ */
+function save_edit() {
+	if ( ! isset( $_POST['save-edit'] ) ) {
+		return;
+	}
+
+	$task_id    = esc_html( $_POST['edit-id'] );
+	$task_value = esc_html( $_POST['edit-value'] );
+	$deadline   = esc_html( $_POST['edit-deadline'] );
+
+	global $pdo;
+
+	$result = $pdo->prepare( 'UPDATE tasks SET task = :task, deadline = :deadline WHERE id = :id' );
+
+	$result->bindParam( ':id', $task_id );
+	$result->bindParam( ':task', $task_value );
+	$result->bindParam( ':deadline', $deadline );
+
+	$result->execute();
 
 	header( 'Location: index.php' );
 }
 
+/**
+ * Checked_task
+ *
+ */
 function checked_task() {
 	if ( ! empty( $_GET['checked'] ) || $_GET['checked'] === '0' ) {
 
 		$id      = esc_html( $_GET['id'] );
 		$checked = esc_html( $_GET['checked'] );
 
-		$checked = $checked ? 1 : 0;
+		$checked = $checked ? 0 : 1;
 
-		$sql              = 'UPDATE tasks SET `checked`= ? WHERE `id` = ?';
-		$bind_value       = array( $checked, $id );
-		$bind_value_types = array( PDO::PARAM_INT );
+		global $pdo;
+		$result = $pdo->prepare( 'UPDATE tasks SET `checked`= :checked WHERE `id` = :id' );
 
-		lb_db_query( $sql, 'change', $bind_value, $bind_value_types );
+		$result->bindParam( ':id', $id );
+		$result->bindParam( ':checked', $checked );
+
+		$result->execute();
 
 		header( 'Location: index.php' );
 	}

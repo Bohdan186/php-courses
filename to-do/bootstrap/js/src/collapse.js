@@ -1,4 +1,4 @@
-import $ from 'jquery'
+import $ from '../../../js/jquery-3.6.0.min.js'
 import Util from './util'
 
 /**

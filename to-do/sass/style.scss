@@ -37,3 +37,44 @@ p {
 		flex-grow: 1;
 	}
 }
+
+.edit-todo-bg {
+	position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    z-index: 1;
+	background-color: rgba(0, 0, 0, .8);
+}
+
+.edit-todo-wrapper {
+	position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    z-index: 2;
+}
+
+.add-task {
+	z-index: 0 !important;
+}
+
+.edit-todo-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    height: 50vh;
+    border-radius: 5px;
+	background: #F0F8FF;
+}

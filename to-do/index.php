@@ -1,5 +1,8 @@
 <?php
 require_once 'php/function.php';
+
+add_task();
+save_edit();
 delete_task();
 edit_task();
 checked_task();
@@ -27,7 +30,7 @@ checked_task();
 							<input type="text" name="add-task-input" class="form-control" placeholder="Enter your task" aria-label="Enter your task" aria-describedby="basic-addon2">
 							<input name="add-task-deadline" class="form-control" type="date" id="example-date-input">
 							<div class="input-group-append">
-								<button name="add-task-button" class="btn btn-success">Add task</button>
+								<button name="add-task-button" class="add-task btn btn-success">Add task</button>
 							</div>
 						</div>
 					</form>
