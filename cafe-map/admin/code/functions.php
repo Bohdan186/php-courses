@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * Ar
  *
@@ -44,23 +45,53 @@ function show_templates( $data ) {
 }
 
 function verify_user() {
-	if( ! isset( $_POST['login-btn'] ) || empty( $_POST['login'] ) || empty( $_POST['login'] ) ) {
+	$login = esc_html( $_POST['login'] );
+	$password = esc_html( $_POST['password'] );
+	$user_data = get_user_data_from_users( $login );
+
+	foreach( $user_data as $user ) {
+		if( $login === $user['name'] && password_verify( $password, $user['password'] ) ) {
+			$_SESSION['login'] = $login;
+		}else {
+			echo 'user not found';
+		}
+	}
+}
+
+function logout() {
+	if( ! isset( $_GET['logout'] ) ) {
 		return;
 	}
 
-	$login = esc_html( $_POST['login'] );
-	$password = esc_html( $_POST['password'] );
-
-	$user_data = get_user_data_from_users( $login );
-
-	if( password_verify( $login, $user_data['password'] ) ) {
-		return true;
-	}else {
-		return false;
-	}
-	
+	unset( $_SESSION['login'] );
 }
 
 function get_current_route() {
 	return esc_html( $_GET['action'] );
+}
+
+function show_btn_logout() {
+	if ( $_SESSION['login'] ) {
+		?>
+			<a href="?logout" class="btn btn-light">Logout</a>
+		<?php
+	}
+}
+
+function save_edit() {
+	if( ! isset( $_POST['save-edit'] ) ) {
+		return;
+	}
+
+	$cafe_id = (int)esc_html( $_POST['save-edit'] );
+	$cafe_name = esc_html( $_POST['name'] );
+	$cafe_img = esc_html( $_POST['img'] );
+	$cafe_type = esc_html( $_POST['type'] );
+	$cafe_rating = (float)esc_html( $_POST['rating'] );
+	$cafe_address = esc_html( $_POST['address'] );
+	$cafe_time_work = esc_html( $_POST['time_work'] );
+	$cafe_number = (int)esc_html( $_POST['number'] );
+	$cafe_number_reviews = (int)esc_html( $_POST['number_reviews'] );
+
+	edit_this_cafe_from_cafe( $cafe_id, $cafe_name, $cafe_img, $cafe_type, $cafe_address, $cafe_rating, $cafe_number_reviews, $cafe_time_work, $cafe_number );
 }

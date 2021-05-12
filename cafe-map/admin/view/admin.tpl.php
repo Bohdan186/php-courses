@@ -1,12 +1,12 @@
-<section class="content">
+<section class="admin-page">
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-4">
+		<div class="row justify-content-center">
+			<div class="col-md-8">
 				<?php
 				foreach( $cafe as $this_cafe ) {
 					?>
-					<div class="card mb-3" style="max-width: 540px;">
-						<div class="row no-gutters">
+					<div class="card mb-3">
+						<div class="row no-gutters align-items-center">
 							<div class="col-md-9">
 								<div class="card-body">
 									<h5 class="card-title"><?php echo $this_cafe['name']; ?></h5>
@@ -22,15 +22,15 @@
 								<div class="img-wrapper">
 									<img src="<?php echo $this_cafe['img']; ?>" class="cafe-img" alt="<?php echo $this_cafe['name']; ?>">
 								</div>
+								<div class="btn-wrapper">
+									<a href="?action=edit&edit-id=<?php echo $this_cafe['id']; ?>" name="edit" class="btn btn-warning btn-block">Edit</a>
+								</div>
 							</div>
 						</div>
 					</div>
 					<?php
 				}
 				?>
-			</div>
-			<div class="col-md-8">
-
 			</div>
 		</div>
 	</div>

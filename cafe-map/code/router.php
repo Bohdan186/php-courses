@@ -1,11 +1,24 @@
 <?php 
 
 function router() {
-	if( ! isset( $_GET['action'] ) ) {
-		set_link_controler( 'home' );
-	}else if( 'contact-us' === $_GET['action'] ) {
-		set_link_controler( 'contact-us' );
-	}else {
-		set_link_controler( 'page_404' );
-	};
+
+	$action = esc_html( $_GET['action'] );
+
+	if( empty( $action ) ) {
+		$action = 'home';
+	}
+
+	switch ( $action ) {
+		case 'home':
+			show_home_page_action();
+			break;
+
+		case 'contact-us':
+			show_contact_us_page_action();
+			break;
+		
+		default:
+			show_404_page_action();
+			break;
+	}
 }

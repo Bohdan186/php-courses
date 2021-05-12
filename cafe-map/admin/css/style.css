@@ -1,0 +1,47 @@
+p {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 5px;
+	font-size: 14px;
+}
+
+input {
+	width: 100%;
+	margin-bottom: 3px;
+}
+
+.header{
+	margin-bottom: 20px;
+}
+
+.img-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 5px;
+}
+
+.img-wrapper img{
+	width: 100%;
+}
+
+.cafe-img {
+	border-radius: 5px;
+}
+
+.btn-wrapper {
+	display: flex;
+	justify-content: center;
+}
+
+.btn-wrapper a{
+	margin: 5px;
+}
+
+.input-group {
+	margin-bottom: 10px;
+}
+
+.input-group-text {
+    min-width: 180px;
+}

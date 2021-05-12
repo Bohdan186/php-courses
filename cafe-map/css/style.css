@@ -1,5 +1,21 @@
+p {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 5px;
+	font-size: 14px;
+}
+
 .img-wrapper {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	padding: 5px;
+}
+
+.img-wrapper img{
+	width: 100%;
+}
+
+.cafe-img {
+	border-radius: 5px;
 }
