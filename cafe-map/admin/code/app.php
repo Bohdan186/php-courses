@@ -1,8 +1,8 @@
 <?php 
 
 require 'router.php';
-require 'controler.php';
+require 'controller.php';
 require 'functions.php';
 require 'models.php';
 
-router();
+lb_router();

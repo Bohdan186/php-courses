@@ -1,11 +1,9 @@
 <?php
 session_start();
 /**
- * Ar
- *
  * The function is intended for output of arrays.
  *
- * @param  mixed $data - Accepts the mass to be output.
+ * @param  mixed $data - Accepts the arrays to be output.
  * @param  bool  $production - Takes a Boolean value. If the "True" parameter then the output of the array will be hidden,
  *                             to view it you will need to add "?x" to the url. Default parameter = "FALSE".
  */
@@ -24,53 +22,61 @@ function ar( $data, $production = false ) {
 }
 
 /**
- * Esc_html
- *
  * Shields all threatening characters.
  *
  * @param  string $str - The tape to be shielded.
  *
- * @return statement
+ * @return string
  */
 function esc_html( $str ) {
 	return htmlspecialchars( trim( $str ) );
 }
 
-function show_templates( $data ) {
-	extract( $data );
-	
+
+/**
+ * The function prepares the page for display.
+ * Connects templates and transfers data from the array to them $data
+ * 
+ * @param  array $data - an array with data for transfer to the created template
+ */
+function lb_show_templates( $data ) {
 	include 'view/header.tpl.php';
-	include 'view/' . $name . '.tpl.php';
+	include 'view/' . $data['name'] . '.tpl.php';
 	include 'view/footer.tpl.php';
 }
 
-function verify_user() {
+/**
+ * Checks on which page the user , and adds the active class
+ *
+ * @param  string $page_name - indicates why the action is equal to.
+ * @return string
+ */
+function lb_get_current_route( $page_name = '' ) {
+	if( ! isset( $_GET['action'] ) && 'admin' === $page_name ) {
+			echo 'active';
+	}
+}
+
+/**
+ * Checks whether there is a user in the database with the login and password specified in the form.
+ * If so, it creates an entry for the session called login and writes the user's login to it
+ *
+ */
+function lb_verify_user() {
 	$login = esc_html( $_POST['login'] );
 	$password = esc_html( $_POST['password'] );
-	$user_data = get_user_data_from_users( $login );
+	$user_data = lb_get_user_data_from_users( $login );
 
-	foreach( $user_data as $user ) {
-		if( $login === $user['name'] && password_verify( $password, $user['password'] ) ) {
-			$_SESSION['login'] = $login;
-		}else {
-			echo 'user not found';
-		}
+	if( $login === $user['name'] && password_verify( $password, $user['password'] ) ) {
+		$_SESSION['login'] = $login;
 	}
 }
 
-function logout() {
-	if( ! isset( $_GET['logout'] ) ) {
-		return;
-	}
-
-	unset( $_SESSION['login'] );
-}
-
-function get_current_route() {
-	return esc_html( $_GET['action'] );
-}
-
-function show_btn_logout() {
+/**
+ * Shows the exit button if there is a login entry in the session.
+ *
+ */
+function lb_show_btn_logout() {
 	if ( $_SESSION['login'] ) {
 		?>
 			<a href="?logout" class="btn btn-light">Logout</a>
@@ -78,7 +84,23 @@ function show_btn_logout() {
 	}
 }
 
-function save_edit() {
+/**
+ * If the logout button is pressed then the login entry will be deleted from the session.
+ *
+ */
+function lb_logout() {
+	if( ! isset( $_GET['logout'] ) ) {
+		return;
+	}
+
+	unset( $_SESSION['login'] );
+}
+
+/**
+ * Saves changes made to the record
+ *
+ */
+function lb_save_edit() {
 	if( ! isset( $_POST['save-edit'] ) ) {
 		return;
 	}
@@ -93,5 +115,5 @@ function save_edit() {
 	$cafe_number = (int)esc_html( $_POST['number'] );
 	$cafe_number_reviews = (int)esc_html( $_POST['number_reviews'] );
 
-	edit_this_cafe_from_cafe( $cafe_id, $cafe_name, $cafe_img, $cafe_type, $cafe_address, $cafe_rating, $cafe_number_reviews, $cafe_time_work, $cafe_number );
+	lb_edit_this_cafe_from_cafe( $cafe_id, $cafe_name, $cafe_img, $cafe_type, $cafe_address, $cafe_rating, $cafe_number_reviews, $cafe_time_work, $cafe_number );
 }

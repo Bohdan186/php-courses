@@ -1,7 +1,6 @@
 <?php
+
 /**
- * Ar
- *
  * The function is intended for output of arrays.
  *
  * @param  mixed $data - Accepts the mass to be output.
@@ -23,44 +22,36 @@ function ar( $data, $production = false ) {
 }
 
 /**
- * Esc_html
- *
  * Shields all threatening characters.
  *
  * @param  string $str - The tape to be shielded.
  *
- * @return statement
+ * @return string
  */
 function esc_html( $str ) {
 	return htmlspecialchars( trim( $str ) );
 }
 
-function show_templates( $data ) {
-	extract( $data );
-	
+/**
+ * The function prepares the page for display.
+ * Connects templates and transfers data from the array to them $data
+ * 
+ * @param  array $data - an array with data for transfer to the created template
+ */
+function lb_show_templates( $data ) {
 	include 'view/header.tpl.php';
-	include 'view/' . $name . '.tpl.php';
+	include 'view/' . $data['name'] . '.tpl.php';
 	include 'view/footer.tpl.php';
 }
 
-function verify_user() {
-	if( ! isset( $_POST['login-btn'] ) || empty( $_POST['login'] ) || empty( $_POST['login'] ) ) {
-		return;
+/**
+ * Checks on which page the user , and adds the active class
+ *
+ * @param  string $page_name - indicates why the action is equal to.
+ * @return string
+ */
+function lb_get_current_route( $page_name = '' ) {
+	if( $page_name === esc_html( $_GET['action'] ) ){
+		echo 'active';
 	}
-
-	$login = esc_html( $_POST['login'] );
-	$password = esc_html( $_POST['password'] );
-
-	$user_data = get_user_data_from_users( $login );
-
-	if( password_verify( $login, $user_data['password'] ) ) {
-		return true;
-	}else {
-		return false;
-	}
-	
-}
-
-function get_current_route() {
-	return esc_html( $_GET['action'] );
 }

@@ -1,6 +1,10 @@
-<?php 
+<?php
 
-function router() {
+/**
+ * This feature is a router
+ *
+ */
+function lb_router() {
 
 	$action = esc_html( $_GET['action'] );
 
@@ -10,15 +14,15 @@ function router() {
 
 	switch ( $action ) {
 		case 'home':
-			show_home_page_action();
+			lb_show_home_page_action();
 			break;
 
 		case 'contact-us':
-			show_contact_us_page_action();
+			lb_show_contact_us_page_action();
 			break;
 		
 		default:
-			show_404_page_action();
+			lb_show_404_page_action();
 			break;
 	}
 }

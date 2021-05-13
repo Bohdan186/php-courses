@@ -1,6 +1,10 @@
 <?php
 
-function router() {
+/**
+ * This feature is a router
+ *
+ */
+function lb_router() {
 
 	$action = esc_html( $_GET['action'] );
 
@@ -9,7 +13,7 @@ function router() {
 	}
 
 	if ( ! $_SESSION['login'] && ! $_POST ) {
-		show_templates(
+		lb_show_templates(
 			array(
 				'name' => 'login_page',
 			)
@@ -19,15 +23,15 @@ function router() {
 
 	switch ( $action ) {
 		case 'admin':
-			show_admin_page_action();
+			lb_show_admin_page_action();
 			break;
 
 		case 'edit':
-			show_edit_page_action();
+			lb_show_edit_page_action();
 			break;
 			
 		default:
-			show_404_page_action();
+			lb_show_404_page_action();
 			break;
 	}
 }
