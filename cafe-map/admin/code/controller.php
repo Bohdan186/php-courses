@@ -6,15 +6,28 @@
  */
 function lb_show_admin_page_action() {
 	lb_verify_user();
+	
+	$start_record = lb_get_start_record();
 
 	lb_show_templates(
 		array(
 			'name' => 'admin',
-			'cafe' => lb_get_all_data_from_cafe(),
+			'cafe' => lb_get_all_data_from_cafe( $start_record ),
+            'cafe_count' => lb_get_count_from_cafe(),
 		)
 	);
+}
 
-	lb_logout();
+/**
+ * Creates an add record page for the selected entry
+ *
+ */
+function lb_show_add_record_page_action() {
+    lb_show_templates(
+        array(
+            'name' => 'add',
+        )
+    );
 }
 
 /**
@@ -22,8 +35,6 @@ function lb_show_admin_page_action() {
  *
  */
 function lb_show_edit_page_action() {
-	lb_save_edit();
-
 	lb_show_templates(
 		array(
 			'name' => 'edit',

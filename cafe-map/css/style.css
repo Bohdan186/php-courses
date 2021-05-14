@@ -19,3 +19,28 @@ p {
 .cafe-img {
 	border-radius: 5px;
 }
+
+.pagination a {
+	margin-right: 5px;
+	width: 30px;
+	height: 30px;
+}
+
+.pagination a:last-child {
+	margin-right: 0;
+}
+
+.content {
+	margin-bottom: 60px;
+}
+
+.footer-inner {
+	display: flex;
+	justify-content: space-between;
+	color:#fff;
+	padding: 20px 0px;
+}
+
+.navbar {
+	margin-bottom: 60px;
+}

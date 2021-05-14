@@ -19,16 +19,12 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item <?php lb_get_current_route(); ?>">
-        <a class="nav-link" href="/cafe-map/">Home <span class="sr-only">(current)</span></a>
-      </li>
-
-      <li class="nav-item <?php lb_get_current_route('contact-us'); ?>">
-        <a class="nav-link" href="/cafe-map/?action=contact-us">Contact us</a>
+      <li class="nav-item <?php echo lb_get_current_route(); ?>">
+        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/cafe-map/admin">Admin</a>
+        <a class="nav-link" href="admin/?action=admin">Admin</a>
       </li>
     </ul>
   </div>

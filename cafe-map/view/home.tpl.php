@@ -1,9 +1,11 @@
+<?php /** @var $data - array data from database cafe */ ?>
+
 <section class="content">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-4">
 				<?php
-					foreach( $data['cafe'] as $this_cafe ) {
+					foreach( $data['cafe'] as $this_cafe ):
 				?>
 						<div class="card mb-3" style="max-width: 540px;">
 							<div class="row no-gutters">
@@ -40,8 +42,25 @@
 							</div>
 						</div>
 				<?php
-					}
+					endforeach;
 				?>
+                <div class="pagination">
+                    <?php
+                        $page_number = 1;
+
+                        for ( $i = 0; $i < $data['cafe_count'][0]; $i += 5):
+                    ?>
+
+                        <a href="?start-record=<?php echo $i?>" class="btn btn-primary btn-sm <?php echo esc_html( $i === (int)$_GET['start-record'] )  ? 'active' : '' ; ?>">
+                            <?php echo $page_number ?>
+                        </a>
+
+                    <?php
+                        $page_number++;
+                        endfor;
+                    ?>
+                </div>
+
 			</div>
 			<div class="col-md-8">
 

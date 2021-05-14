@@ -17,10 +17,6 @@ function lb_router() {
 			lb_show_home_page_action();
 			break;
 
-		case 'contact-us':
-			lb_show_contact_us_page_action();
-			break;
-		
 		default:
 			lb_show_404_page_action();
 			break;

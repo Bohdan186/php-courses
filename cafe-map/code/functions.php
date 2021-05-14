@@ -51,7 +51,15 @@ function lb_show_templates( $data ) {
  * @return string
  */
 function lb_get_current_route( $page_name = '' ) {
-	if( $page_name === esc_html( $_GET['action'] ) ){
-		echo 'active';
+	if( $page_name === esc_html( $_GET['action'] ) ) {
+		return 'active';
 	}
+}
+
+function lb_get_start_record() {
+    if( empty( $_GET['start-record'] ) ) {
+        return 0;
+    }
+
+    return esc_html( $_GET['start-record'] );
 }

@@ -1,3 +1,7 @@
+h1, h2, h3, h4, h5, h6 {
+	margin-bottom: 20px;
+}
+
 p {
 	margin: 0;
 	padding: 0;
@@ -35,7 +39,8 @@ input {
 }
 
 .btn-wrapper a{
-	margin: 5px;
+	margin: 2%;
+	min-width: 46%;
 }
 
 .input-group {
@@ -44,4 +49,29 @@ input {
 
 .input-group-text {
     min-width: 180px;
+}
+
+.pagination a {
+	margin-right: 5px;
+	width: 30px;
+	height: 30px;
+}
+
+.pagination a:last-child {
+	margin-right: 0;
+}
+
+.admin-page {
+	margin-bottom: 60px;
+}
+
+.footer-inner {
+	display: flex;
+	justify-content: space-between;
+	color: #fff;
+	padding: 20px 0px;
+}
+
+.navbar {
+	margin-bottom: 60px;
 }
