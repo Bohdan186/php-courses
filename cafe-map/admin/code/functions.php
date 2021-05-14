@@ -7,7 +7,7 @@ session_start();
  * @param bool $production - Takes a Boolean value. If the "True" parameter then the output of the array will be hidden,
  *                             to view it you will need to add "?x" to the url. Default parameter = "FALSE".
  */
-function ar($data, bool $production = false ) {
+function ar($data, $production = false ) {
 	if ( $production ) {
 		if ( isset( $_GET['x'] ) ) {
 			echo '<pre>';
@@ -28,7 +28,7 @@ function ar($data, bool $production = false ) {
  *
  * @return string
  */
-function esc_html(string $str ): string {
+function esc_html( $str ) {
 	return htmlspecialchars( trim( $str ) );
 }
 
@@ -38,7 +38,7 @@ function esc_html(string $str ): string {
  * 
  * @param array $data - an array with data for transfer to the created template
  */
-function lb_show_templates(array $data ) {
+function lb_show_templates( $data ) {
 	include 'view/header.tpl.php';
 	include 'view/' . $data['name'] . '.tpl.php';
 	include 'view/footer.tpl.php';
@@ -50,7 +50,7 @@ function lb_show_templates(array $data ) {
  *
  * @return bool
  */
-function check_login(): bool {
+function check_login() {
     $answer = true;
 
     if ( ! $_SESSION['login'] && ! $_POST ) {
@@ -74,7 +74,7 @@ function check_login(): bool {
  * @param string $page_name - indicates why the action is equal to.
  * @return string
  */
-function lb_get_current_route(string $page_name = '' ): string {
+function lb_get_current_route( $page_name = '' ) {
     if( $page_name === esc_html( $_GET['action'] ) ) {
         return 'active';
     }
