@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require 'router.php';
 require 'controller.php';

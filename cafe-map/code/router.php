@@ -5,18 +5,18 @@
  *
  */
 function lb_router() {
-
+	
 	$action = esc_html( $_GET['action'] );
-
-	if( empty( $action ) ) {
+	
+	if ( empty( $action ) ) {
 		$action = 'home';
 	}
-
+	
 	switch ( $action ) {
 		case 'home':
 			lb_show_home_page_action();
 			break;
-
+		
 		default:
 			lb_show_404_page_action();
 			break;

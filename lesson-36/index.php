@@ -43,10 +43,10 @@ function esc_html( $str ) {
 
 $config_1 = array(
 	'dms'      => 'mysql',
-	'host'     => 'localhost',
+	'host'     => '192.168.1.85',
 	'dbname'   => 'lb_database',
-	'user'     => 'root',
-	'password' => 'root',
+	'user'     => 'bohdan',
+	'password' => 'bohdan',
 );
 
 /**

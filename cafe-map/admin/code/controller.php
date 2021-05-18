@@ -8,12 +8,12 @@ function lb_show_admin_page_action() {
 	lb_verify_user();
 	
 	$start_record = lb_get_start_record();
-
+	
 	lb_show_templates(
 		array(
-			'name' => 'admin',
-			'cafe' => lb_get_all_data_from_cafe( $start_record ),
-            'cafe_count' => lb_get_count_from_cafe(),
+			'name'       => 'admin',
+			'cafe'       => lb_get_all_data_from_cafe( $start_record ),
+			'cafe_count' => lb_get_count_from_cafe(),
 		)
 	);
 }
@@ -23,11 +23,11 @@ function lb_show_admin_page_action() {
  *
  */
 function lb_show_add_record_page_action() {
-    lb_show_templates(
-        array(
-            'name' => 'add',
-        )
-    );
+	lb_show_templates(
+		array(
+			'name' => 'add',
+		)
+	);
 }
 
 /**
@@ -37,7 +37,7 @@ function lb_show_add_record_page_action() {
 function lb_show_edit_page_action() {
 	lb_show_templates(
 		array(
-			'name' => 'edit',
+			'name'      => 'edit',
 			'this_cafe' => lb_get_this_cafe_from_cafe( $_GET['edit-id'] ),
 		)
 	);

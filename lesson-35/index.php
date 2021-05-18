@@ -41,7 +41,7 @@ function esc_html( $str ) {
 	return htmlspecialchars( trim( $str ) );
 }
 
-$pdo = new PDO( 'mysql:host=localhost;dbname=lb_database', 'root', 'root' );
+$pdo = new PDO( 'mysql:host=192.168.1.85;dbname=lb_database', 'bohdan', 'bohdan' );
 
 /**
  * Lb_get_data
