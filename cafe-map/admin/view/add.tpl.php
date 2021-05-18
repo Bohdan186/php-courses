@@ -58,7 +58,7 @@
 							<input type = "text" class = "form-control" name = "number_reviews"
 								   aria-label = "number reviews"><br>
 						</div>
-						<input type = "file" name = "record-image" value = "" accept = "image/jpeg,image/png"><br>
+<!--						<input type = "file" name = "record-image" value = "" accept = "image/jpeg,image/png"><br>-->
 
 						<button name = "save-record" class = "btn btn-success">Зберегти</button>
 					</div>
