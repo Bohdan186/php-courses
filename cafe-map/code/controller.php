@@ -12,6 +12,7 @@ function lb_show_home_page_action() {
 			'name'       => 'home',
 			'cafe'       => lb_get_all_data_from_cafe( $start_record ),
 			'cafe_count' => lb_get_count_from_cafe(),
+			'pages'      => lb_get_all_pages_from_pages(),
 		)
 	);
 }

@@ -1,46 +1,59 @@
 p {
-    margin: 0;
-    padding: 0;
-    margin-bottom: 5px;
-    font-size: 14px;
+	margin        : 0;
+	padding       : 0;
+	margin-bottom : 5px;
+	font-size     : 14px;
 }
 
 .img-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
+	display         : flex;
+	justify-content : center;
+	align-items     : center;
+	padding         : 5px;
 }
 
 .img-wrapper img {
-    width: 100%;
+	width : 100%;
 }
 
 .cafe-img {
-    border-radius: 5px;
+	border-radius : 5px;
 }
 
 .pagination a {
-    margin-right: 5px;
-    width: 30px;
-    height: 30px;
+	margin-right : 5px;
+	width        : 30px;
+	height       : 30px;
 }
 
 .pagination a:last-child {
-    margin-right: 0;
+	margin-right : 0;
 }
 
 .content {
-    margin-bottom: 60px;
+	margin-bottom : 60px;
 }
 
 .footer-inner {
-    display: flex;
-    justify-content: space-between;
-    color: #fff;
-    padding: 20px 0px;
+	display         : flex;
+	justify-content : space-between;
+	color           : #fff;
+	padding         : 20px 0px;
 }
 
 .navbar {
-    margin-bottom: 60px;
+	margin-bottom : 60px;
+}
+
+#gmap {
+	height : 100%;
+}
+.card {
+	cursor: pointer;
+	transition: all .4s ease;
+}
+
+.card.active,
+.card:hover {
+	background-color : #ddf2ff;
 }

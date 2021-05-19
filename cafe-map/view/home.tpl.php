@@ -1,52 +1,52 @@
 <?php
 /** @var $data - array data from database cafe */ ?>
 
-<section class = "content">
-	<div class = "container-fluid">
-		<div class = "row">
-			<div class = "col-md-4">
+<section class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-4">
 				<?php
 				foreach ( $data['cafe'] as $this_cafe ):
 					?>
-					<div class = "card mb-3" style = "max-width: 540px;">
-						<div class = "row no-gutters">
-							<div class = "col-md-9">
-								<div class = "card-body">
-									<h5 class = "card-title">
+					<div class="card mb-3" style="max-width: 540px;">
+						<div class="row no-gutters">
+							<div class="col-md-9">
+								<div class="card-body">
+									<h5 class="card-title cafe-title">
 										<?php
 										echo $this_cafe['name']; ?>
 									</h5>
-									<p class = "card-text"><small class = "text-muted">
+									<p class="card-text"><small class="text-muted">
 											<?php
 											echo $this_cafe['type']; ?>
 										</small></p>
-									<p class = "card-text">Рейтинг:
+									<p class="card-text">Рейтинг:
 										<?php
 										echo $this_cafe['rating']; ?>
 									</p>
-									<p class = "card-text">Адреса:
+									<p class="card-text cafe-address" data-cafe-lat="<?php echo $this_cafe['lat']; ?>" data-cafe-lon="<?php echo $this_cafe['lon']; ?>">Адреса:
 										<?php
 										echo $this_cafe['address']; ?>
 									</p>
-									<p class = "card-text">Години:
+									<p class="card-text">Години:
 										<?php
 										echo $this_cafe['time_work']; ?>
 									</p>
-									<p class = "card-text">Номер телефону:
+									<p class="card-text">Номер телефону:
 										<?php
 										echo $this_cafe['number']; ?>
 									</p>
-									<p class = "card-text">Кількість відгуків:
+									<p class="card-text">Кількість відгуків:
 										<?php
 										echo $this_cafe['number_reviews']; ?>
 									</p>
 								</div>
 							</div>
-							<div class = "col-md-3">
-								<div class = "img-wrapper">
-									<img src = "<?php
-									echo $this_cafe['img']; ?>" class = "cafe-img"
-										 alt = "<?php
+							<div class="col-md-3">
+								<div class="img-wrapper">
+									<img src="<?php
+									echo $this_cafe['img']; ?>" class="cafe-img"
+										 alt="<?php
 										 echo $this_cafe['name']; ?>">
 								</div>
 							</div>
@@ -55,16 +55,16 @@
 				<?php
 				endforeach;
 				?>
-				<div class = "pagination">
+				<div class="pagination">
 					<?php
 					$page_number = 1;
 
 					for ( $i = 0; $i < $data['cafe_count'][0]; $i += 5 ):
 						?>
 
-						<a href = "?start-record=<?php
+						<a href="?start-record=<?php
 						echo $i ?>"
-						   class = "btn btn-primary btn-sm <?php
+						   class="btn btn-primary btn-sm <?php
 						   echo esc_html( $i === (int)$_GET['start-record'] ) ? 'active' : ''; ?>">
 							<?php
 							echo $page_number ?>
@@ -77,8 +77,8 @@
 				</div>
 
 			</div>
-			<div class = "col-md-8">
-
+			<div class="col-md-8">
+				<div id="gmap"></div>
 			</div>
 		</div>
 	</div>

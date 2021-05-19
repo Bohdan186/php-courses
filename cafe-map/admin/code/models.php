@@ -109,3 +109,15 @@ function lb_get_user_data_from_users( $login ) {
 	
 	return $result->fetch( PDO::FETCH_ASSOC );
 }
+
+function lb_add_page( $title, $content ) {
+	global $lb_pdo;
+	
+	
+	$result = $lb_pdo->prepare( 'INSERT INTO `pages` ( `name`, `html`) VALUE (:name, :html)' );
+	
+	$result->bindParam( ':name', $title );
+	$result->bindParam( ':html', $content );
+	
+	return $result->execute();
+}

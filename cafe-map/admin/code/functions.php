@@ -63,12 +63,29 @@ function lb_get_current_route( $page_name = '' ) {
  *
  */
 function lb_verify_user() {
+	if ( empty( $_POST['login'] ) && empty( $_POST['password'] ) ) {
+		return;
+	}
+	
 	$login = esc_html( $_POST['login'] );
 	$password = esc_html( $_POST['password'] );
 	$user_data = lb_get_user_data_from_users( $login );
 
 	if ( $login === $user_data['name'] && password_verify( $password, $user_data['password'] ) ) {
 		$_SESSION['login'] = $login;
+	} else {
+		if ( $login != $user_data['name'] ) {
+			lb_add_notice( 'error', 'Логін невірний!' );
+		} else if ( empty( $login ) && empty( $password ) ) {
+			lb_add_notice( 'error', 'Введіть Логін та Пароль!' );
+		} else if ( empty( $login ) ) {
+			lb_add_notice( 'error', 'Введіть Логін!' );
+		} else if ( empty( $password ) ) {
+			lb_add_notice( 'error', 'Введіть Пароль!' );
+		}
+
+		header( 'Location: index.php' );
+		die();
 	}
 }
 
@@ -79,7 +96,7 @@ function lb_verify_user() {
 function lb_show_btn_logout() {
 	if ( $_SESSION['login'] ) {
 		?>
-		<a href = "?logout" class = "btn btn-light">Logout</a>
+		<a href="?logout" class="btn btn-light">Logout</a>
 		<?php
 	}
 }
@@ -107,22 +124,22 @@ function lb_save_record() {
 	}
 
 	if ( empty( $_POST['name'] ) ) {
-		add_notice( 'error', 'Вкажіть логін' );
+		lb_add_notice( 'error', 'Вкажіть логін' );
 	}
 	if ( empty( $_POST['type'] ) ) {
-		add_notice( 'error', 'Вкажіть тип закладу' );
+		lb_add_notice( 'error', 'Вкажіть тип закладу' );
 	}
 	if ( empty( $_POST['img'] ) ) {
-		add_notice( 'error', 'Вкажіть шлях до катринки' );
+		lb_add_notice( 'error', 'Вкажіть шлях до катринки' );
 	}
 	if ( empty( $_POST['address'] ) ) {
-		add_notice( 'error', 'Вкажіть адресу' );
+		lb_add_notice( 'error', 'Вкажіть адресу' );
 	}
 	if ( empty( $_POST['time_work'] ) ) {
-		add_notice( 'error', 'Вкажіть години роботи' );
+		lb_add_notice( 'error', 'Вкажіть години роботи' );
 	}
 	if ( empty( $_POST['number'] ) ) {
-		add_notice( 'error', 'Вкажіть номер телефону' );
+		lb_add_notice( 'error', 'Вкажіть номер телефону' );
 	}
 
 	if ( ! empty( $_SESSION['notice']['error'] ) ) {
@@ -142,9 +159,9 @@ function lb_save_record() {
 		);
 
 		if ( lb_change_cafe_from_cafe( $data, 'add' ) ) {
-			add_notice( 'success', 'Запис успішно додано!' );
+			lb_add_notice( 'success', 'Запис успішно додано!' );
 		} else {
-			add_notice( 'error', 'Запис НЕ додано!' );
+			lb_add_notice( 'error', 'Запис НЕ додано!' );
 		}
 
 		header( 'Location:?action=admin' );
@@ -162,22 +179,22 @@ function lb_save_edit() {
 	}
 
 	if ( empty( $_POST['name'] ) ) {
-		add_notice( 'error', 'Вкажіть логін' );
+		lb_add_notice( 'error', 'Вкажіть логін' );
 	}
 	if ( empty( $_POST['type'] ) ) {
-		add_notice( 'error', 'Вкажіть тип закладу' );
+		lb_add_notice( 'error', 'Вкажіть тип закладу' );
 	}
 	if ( empty( $_POST['img'] ) ) {
-		add_notice( 'error', 'Вкажіть шлях до катринки' );
+		lb_add_notice( 'error', 'Вкажіть шлях до катринки' );
 	}
 	if ( empty( $_POST['address'] ) ) {
-		add_notice( 'error', 'Вкажіть адресу' );
+		lb_add_notice( 'error', 'Вкажіть адресу' );
 	}
 	if ( empty( $_POST['time_work'] ) ) {
-		add_notice( 'error', 'Вкажіть години роботи' );
+		lb_add_notice( 'error', 'Вкажіть години роботи' );
 	}
 	if ( empty( $_POST['number'] ) ) {
-		add_notice( 'error', 'Вкажіть номер телефону' );
+		lb_add_notice( 'error', 'Вкажіть номер телефону' );
 	}
 
 	if ( ! empty( $_SESSION['notice']['error'] ) ) {
@@ -197,10 +214,10 @@ function lb_save_edit() {
 			'number_reviews' => (int)esc_html( $_POST['number_reviews'] ),
 	);
 
-	if ( lb_change_cafe_from_cafe( $data, 'add' ) ) {
-		add_notice( 'success', 'Запис успішно оновлено!' );
+	if ( lb_change_cafe_from_cafe( $data, 'edit' ) ) {
+		lb_add_notice( 'success', 'Запис успішно оновлено!' );
 	} else {
-		add_notice( 'error', 'Запис НЕ оновлено!' );
+		lb_add_notice( 'error', 'Запис НЕ оновлено!' );
 	}
 
 	header( 'Location:?action=admin' );
@@ -219,9 +236,9 @@ function lb_remove_record() {
 	$id = esc_html( $_GET['remove-id'] );
 
 	if ( lb_remove_this_cafe_from_cafe( $id ) ) {
-		add_notice( 'success', 'Запис успішно видалено!' );
+		lb_add_notice( 'success', 'Запис успішно видалено!' );
 	} else {
-		add_notice( 'error', 'Запис НЕ видалено!' );
+		lb_add_notice( 'error', 'Запис НЕ видалено!' );
 	}
 
 	header( 'Location:?action=admin' );
@@ -236,14 +253,14 @@ function lb_get_start_record() {
 	return esc_html( $_GET['start-record'] );
 }
 
-function add_notice( $type, $message ) {
+function lb_add_notice( $type, $message ) {
 	$_SESSION['notice'][$type][] = $message;
 }
 
-function print_notice( $type ) {
-	if ( 'error' === $type && ! empty( $_SESSION['notice']['error'] ) ) :
-		?>
-		<div class = "alert alert-danger" role = "alert">
+function lb_print_notice( $type ) {
+	if ( 'error' === $type && ! empty( $_SESSION['notice']['error'] ) ) : ?>
+
+		<div class="alert alert-danger" role="alert">
 			<?php
 			foreach ( $_SESSION['notice']['error'] as $error ) {
 				echo $error . '<br>';
@@ -256,7 +273,7 @@ function print_notice( $type ) {
 
 	if ( 'success' === $type && ! empty( $_SESSION['notice']['success'] ) ) :
 		?>
-		<div class = "alert alert-success" role = "alert">
+		<div class="alert alert-success" role="alert">
 			<?php
 			foreach ( $_SESSION['notice']['success'] as $success ) {
 				echo $success . '<br>';
@@ -266,5 +283,4 @@ function print_notice( $type ) {
 		<?php
 		unset( $_SESSION['notice']['success'] );
 	endif;
-
 }

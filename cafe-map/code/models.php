@@ -33,3 +33,13 @@ function lb_get_count_from_cafe() {
 	
 	return $result->fetch( PDO::FETCH_NUM );
 }
+
+function lb_get_all_pages_from_pages() {
+	global $lb_pdo;
+	
+	$result = $lb_pdo->prepare( 'SELECT * FROM `pages`' );
+	
+	$result->execute();
+	
+	return $result->fetch( PDO::FETCH_ASSOC );
+}
