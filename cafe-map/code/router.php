@@ -17,6 +17,10 @@ function lb_router() {
 			lb_show_home_page_action();
 			break;
 		
+		case 'page':
+			lb_show_pages_action();
+			break;
+		
 		default:
 			lb_show_404_page_action();
 			break;

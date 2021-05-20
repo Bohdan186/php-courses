@@ -30,15 +30,15 @@
 				<a class="nav-link" href="admin/?action=admin">Admin</a>
 			</li>
 			
-			<?php foreach ( $data['pages'] as $page ):?>
+			<?php  if( isset( $data['pages'] ) ) : foreach ( $data['pages'] as $page ):?>
 
 			<li class="nav-item">
 				<a class="nav-link" href="?action=page&id=<?php echo $page['id']?>">
-					<?php echo $page?>
+					<?php echo $page['name']?>
 				</a>
 			</li>
 			
-			<?php endforeach;?>
+			<?php endforeach; endif;?>
 			
 		</ul>
 	</div>

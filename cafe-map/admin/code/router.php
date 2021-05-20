@@ -22,11 +22,16 @@ function lb_router() {
 	} else {
 		lb_logout();
 		lb_remove_record();
+		lb_remove_page();
 	}
 	
 	switch ( $action ) {
 		case 'admin':
 			lb_show_admin_page_action();
+			break;
+			
+		case 'make_page':
+			lb_show_make_page();
 			break;
 		
 		case 'add_page':
@@ -35,6 +40,14 @@ function lb_router() {
 
 		case 'save_page':
 			lb_save_page();
+			break;
+			
+		case 'save_edit_page':
+			lb_save_edit_page();
+			break;
+			
+		case 'edit-page':
+			lb_show_edit_page_page_action();
 			break;
 
 		case 'add_record':

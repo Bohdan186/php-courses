@@ -41,5 +41,17 @@ function lb_get_all_pages_from_pages() {
 	
 	$result->execute();
 	
+	return $result->fetchAll( PDO::FETCH_ASSOC );
+}
+
+function lb_get_this_page_data_from_pages( $id ) {
+	global $lb_pdo;
+	
+	$result = $lb_pdo->prepare( 'SELECT * FROM `pages` WHERE id = :id' );
+	
+	$result->bindParam( ':id', $id );
+	
+	$result->execute();
+	
 	return $result->fetch( PDO::FETCH_ASSOC );
 }

@@ -26,14 +26,17 @@
 				<li class="nav-item">
 					<a class="nav-link" href="../index.php">Home <span class="sr-only">(current)</span></a>
 				</li>
-				<li class="nav-item <?php
-				echo lb_get_current_route( 'admin' ) ?>">
+				
+				<li class="nav-item <?php echo lb_get_current_route( 'admin' ) ?>">
 					<a class="nav-link" href="?action=admin">Admin <span class="sr-only">(current)</span></a>
+				</li>
+
+				<li class="nav-item <?php echo lb_get_current_route( 'make_page' ) ?>">
+					<a class="nav-link" href="?action=make_page">Add page <span class="sr-only">(current)</span></a>
 				</li>
 			</ul>
 			<div class="my-2 my-lg-0">
-				<?php
-				lb_show_btn_logout(); ?>
+				<?php lb_show_btn_logout(); ?>
 			</div>
 		</div>
 	</nav>

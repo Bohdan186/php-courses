@@ -9,9 +9,22 @@ function lb_show_home_page_action() {
 	
 	lb_show_templates(
 		array(
-			'name'       => 'home',
+			'name'  => 'home',
 			'cafe'       => lb_get_all_data_from_cafe( $start_record ),
 			'cafe_count' => lb_get_count_from_cafe(),
+			'pages'      => lb_get_all_pages_from_pages(),
+		)
+	);
+}
+
+function lb_show_pages_action() {
+	$id = esc_html( $_GET['id'] );
+	
+	lb_show_templates(
+		array(
+			'name' => 'temp_page',
+			'id' => $id,
+			'page_data' => lb_get_this_page_data_from_pages( $id ),
 			'pages'      => lb_get_all_pages_from_pages(),
 		)
 	);

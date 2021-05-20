@@ -7,7 +7,6 @@
 			<div class="col-md-2">
 				<h4>Admin Panel</h4>
 				<a href="?action=add_record" name="add-record" class="btn btn-success">Add record</a>
-				<a href="?action=add_page" name="add-page" class="btn btn-success">Add page</a>
 			</div>
 			<div class="col-md-8">
 				<?php
