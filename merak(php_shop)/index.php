@@ -2,7 +2,7 @@
 /**
  * Primary file.
  *
- * @package index.php
+ * @package index
  */
 
 require_once 'app/code/app.php';

@@ -1,11 +1,16 @@
 <?php
+/**
+ * A file that describes the router function.
+ *
+ * @package router
+ */
 
 /**
  * This feature is a router
  *
  */
 function lb_router() {
-	$action = esc_html( $_GET['action'] );
+	$action = lb_esc_html( $_GET['action'] );
 	
 	if ( empty( $action ) ) {
 		$action = 'home';
@@ -16,8 +21,12 @@ function lb_router() {
 			lb_show_home_page_action();
 			break;
 		
-		case 'page':
-			lb_show_pages_action();
+		case 'shop':
+			lb_show_shop_page_action();
+			break;
+			
+		case 'single_product':
+			lb_show_single_product_page_action();
 			break;
 		
 		default:
