@@ -49,12 +49,14 @@ function lb_show_shop_page_action() {
  * Show single product page.
  */
 function lb_show_single_product_page_action() {
-	$product_id = lb_esc_html( $_GET['id'] );
+	$product_id = esc_html( $_GET['id'] );
+
 	lb_show_templates(
 		array(
 			'name'         => 'single_product',
 			'products'     => lb_get_products_data( 5 ),
 			'this_product' => lb_get_product_data_by_id( $product_id ),
+			'category'     => lb_get_product_category_by_id( $product_id ),
 		)
 	);
 }
@@ -66,6 +68,19 @@ function lb_show_view_cart_page_action() {
 	lb_show_templates(
 		array(
 			'name' => 'view_cart',
+		)
+	);
+}
+
+/**
+ * Show check out page.
+ */
+function lb_show_check_out_page_action() {
+	lb_submit_check_out_form();
+
+	lb_show_templates(
+		array(
+			'name' => 'check_out',
 		)
 	);
 }

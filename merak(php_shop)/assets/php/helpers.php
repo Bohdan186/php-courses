@@ -12,7 +12,7 @@
  * @param bool  $production - Takes a Boolean value. If the "True" parameter then the output of the array will be hidden,
  *                             to view it you will need to add "?x" to the url. Default parameter = "FALSE".
  */
-function lb_ar( $data, $production = false ) {
+function ar( $data, $production = false ) {
 	if ( $production ) {
 		if ( isset( $_GET['x'] ) ) {
 			echo '<pre>';
@@ -33,7 +33,7 @@ function lb_ar( $data, $production = false ) {
  *
  * @return string
  */
-function lb_esc_html( $str ) {
+function esc_html( $str ) {
 	return htmlspecialchars( trim( $str ) );
 }
 

@@ -27,24 +27,24 @@
 				<div class="col-sm-12 col-md-6 col-lg-3">
 					<div class="product-box">
 						<div class="product-foto">
-							<img src="<?php echo lb_esc_html( $product['img_url'] ) ?>" alt="<?php echo lb_esc_html( $product['name'] ) ?>">
+							<img src="<?php echo esc_html( $product['img_url'] ) ?>" alt="<?php echo esc_html( $product['name'] ) ?>">
 							<div class="product-foto-hover">
-								<a href="?action=single_product&id=<?php echo lb_esc_html( $product['id'] ) ?>" class="link-full"></a>
+								<a href="?action=single_product&id=<?php echo esc_html( $product['id'] ) ?>" class="link-full"></a>
 								<div class="button-product-wrapper">
-									<a href="?action=shop&add_to_cart=<?php echo lb_esc_html( $product['id'] ) ?>" class="button button-product product-big" data-toggle="tooltip" data-placement="top" title="Add to cart"><span class="btn-text-span">Add to cart</span><span class="btn-plus">+</span> </a>
+									<a href="?action=shop&add_to_cart=<?php echo esc_html( $product['id'] ) ?>" class="button button-product product-big" data-toggle="tooltip" data-placement="top" title="Add to cart"><span class="btn-text-span">Add to cart</span><span class="btn-plus">+</span> </a>
 								</div>
 							</div>
 						</div>
 						<div class="product-text">
 							<div class="product-text-inner">
 								<h6>
-									<a href="?action=single_product&id=<?php echo lb_esc_html( $product['id'] ) ?>" class="link-hover">
-										<?php echo lb_esc_html( $product['name'] ) ?>
+									<a href="?action=single_product&id=<?php echo esc_html( $product['id'] ) ?>" class="link-hover">
+										<?php echo esc_html( $product['name'] ) ?>
 									</a>
 								</h6>
 							</div>
 							<div class="price">
-								<?php echo lb_esc_html( $product['price'] ) ?>
+								<?php echo esc_html( $product['price'] ) ?>
 							</div>
 						</div>
 					</div>
@@ -54,7 +54,7 @@
 		<div class="page-numbers">
 			<?php $page_number = 1;
 				for ( $i = 0; $i < $data['product_count'][0]; $i += 12 ): ?>
-					<a href="?action=shop&start-record=<?php echo $i ?>" class="btn btn-primary btn-sm <?php echo lb_esc_html( $i === (int)$_GET['start-record'] ) ? 'active' : ''; ?>">
+					<a href="?action=shop&start-record=<?php echo $i ?>" class="btn btn-primary btn-sm <?php echo esc_html( $i === (int)$_GET['start-record'] ) ? 'active' : ''; ?>">
 						<?php echo $page_number ?>
 					</a>
 				<?php $page_number++;

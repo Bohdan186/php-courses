@@ -9,7 +9,7 @@
  * This feature is a router
  */
 function lb_router() {
-	$action = lb_esc_html( $_GET['action'] );
+	$action = esc_html( $_GET['action'] );
 
 	if ( empty( $action ) ) {
 		$action = 'home';
@@ -31,7 +31,11 @@ function lb_router() {
 		case 'view_cart':
 			lb_show_view_cart_page_action();
 			break;
-
+			
+		case 'check_out':
+			lb_show_check_out_page_action();
+			break;
+			
 		default:
 			lb_show_404_page_action();
 			break;

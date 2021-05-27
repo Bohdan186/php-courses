@@ -2927,7 +2927,7 @@ input[type=submit] {
 
 .button {
   display: inline-block;
-  padding: 10px 27px;
+  padding: 14px 27px;
   font-weight: 600;
   color: inherit;
   font-size: 14px;
@@ -2991,8 +2991,7 @@ input[type=submit] {
 .button.button-cart {
   color: #fff;
   flex-grow: 1;
-  margin: 0 15px;
-  min-height: 45px;
+  /*margin: 0 15px;*/
 }
 .button.button-cart:hover {
   background: #5a5959;
@@ -3823,6 +3822,7 @@ input[type=submit] {
 .product-page-text .add-to-card {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-bottom: 50px;
 }
 .product-page-text .price {
@@ -4523,4 +4523,43 @@ input[type=submit] {
 
 .product-center .product-page-text .price {
   font-size : 28px;
+}
+
+.cart-button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.cart-button-wrapper .button {
+  flex-grow: 0;
+}
+
+.cart-button-wrapper .button + .button {
+  margin-left : 10px;
+}
+
+.product-main-page {
+  margin-bottom : 60px;
+}
+
+.total_price {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.product-photo {
+  max-width: 200px;
+}
+
+.checkout-form {
+  margin-bottom : 60px;
+}
+
+.checkout-form label span {
+  color: red;
+}
+
+a:hover {
+  text-decoration : none;
 }

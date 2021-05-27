@@ -29,7 +29,7 @@ function lb_get_start_record() {
 		return 0;
 	}
 
-	return lb_esc_html( $_GET['start-record'] );
+	return esc_html( $_GET['start-record'] );
 }
 
 /**
@@ -40,13 +40,15 @@ function lb_add_product_data_to_session() {
 		return;
 	}
 
-	$product_id = lb_esc_html( $_GET['add_to_cart'] );
+	$product_id = esc_html( $_GET['add_to_cart'] );
 	$flag       = false;
 
-	foreach ( $_SESSION['cart'] as $key => $product ) {
-		if ( $product_id === $product['product_id'] ) {
-			$_SESSION['cart'][ $key ]['product_count'] += 1;
-			$flag                                       = true;
+	if ( isset( $_SESSION['cart'] ) ) {
+		foreach ( $_SESSION['cart'] as $key => $product ) {
+			if ( $product_id === $product['product_id'] ) {
+				$_SESSION['cart'][ $key ]['product_count'] += 1;
+				$flag                                       = true;
+			}
 		}
 	}
 
@@ -59,8 +61,12 @@ function lb_add_product_data_to_session() {
 		$_SESSION['cart'][] = $add_product;
 	}
 
-	header( 'Location: ?action=' . lb_esc_html( $_GET['action'] ) );
-	die();
+	if ( 'single_product' === $_GET['action'] ) {
+		lb_redirect( '?action=' . esc_html( $_GET['action'] ) . '&id=' . esc_html( $_GET['id'] ) );
+	} else {
+		lb_redirect( '?action=' . esc_html( $_GET['action'] ) );
+	}
+
 }
 
 /**
@@ -71,7 +77,7 @@ function lb_delete_product_data_from_session() {
 		return;
 	}
 
-	$product_id = lb_esc_html( $_GET['delete_from_cart'] );
+	$product_id = esc_html( $_GET['delete_from_cart'] );
 
 	foreach ( $_SESSION['cart'] as $key => $product ) {
 		if ( $product_id === $product['product_id'] ) {
@@ -79,24 +85,8 @@ function lb_delete_product_data_from_session() {
 		}
 	}
 
-	header( 'Location: ?action=' . lb_esc_html( $_GET['action'] ) );
+	header( 'Location: ?action=' . esc_html( $_GET['action'] ) );
 	die();
-}
-
-/**
- * The function return products id from session
- *
- * @return string
- */
-function lb_get_products_id_from_session() {
-	$products_in_cart = $_SESSION['cart'];
-	$products_id      = '';
-
-	foreach ( $products_in_cart as $product ) {
-		$products_id .= ' id = ' . $product['product_id'] . ' OR';
-	}
-
-	return substr( $products_id, 0, -2 );
 }
 
 /**
@@ -116,6 +106,21 @@ function lb_get_count_products_in_cart() {
 	}
 
 	return $count;
+}
+
+function lb_add_product_count_in_session() {
+	if ( ! isset( $_POST['add_to_cart'] ) || ! $_SESSION['cart'] ) {
+		return;
+	}
+
+	$add_count  = esc_html( $_POST['add_product_count'] );
+	$product_id = esc_html( $_POST['add_to_cart'] );
+
+	foreach ( $_SESSION['cart'] as &$product ) {
+		if ( $product['product_id'] === $product_id ) {
+			$product['product_count'] = lb_get_count_product_in_cart( $product_id ) + (int) $add_count;
+		}
+	}
 }
 
 /**
@@ -157,22 +162,25 @@ function lb_get_price_product_in_cart( $getAll = true, $id = 0 ) {
 	$product_price = 0;
 	$count         = 0;
 
-	foreach ( $_SESSION['cart'] as $product ) {
-		if ( true === $getAll ) {
+	if ( true === $getAll ) {
+		foreach ( $_SESSION['cart'] as $product ) {
 			foreach ( lb_get_product_price_by_id( $product['product_id'] ) as $price ) {
 				$product_price += $price * $product['product_count'];
 			}
-		} else {
 
-			foreach ( lb_get_product_price_by_id( $id ) as $price ) {
-				$product_price = $price * $product['product_count'];
+			$count += $product['product_count'];
+		}
+	} else {
+		foreach ( lb_get_product_price_by_id( $id ) as $price ) {
+			foreach ( $_SESSION['cart'] as $product ) {
+				if ( $product['product_id'] === $id ) {
+					$product_price = $price * $product['product_count'];
+				}
 			}
 		}
-		$count += $product['product_count'];
-
 	}
-	return $product_price;
 
+	return $product_price;
 }
 
 /**
@@ -188,4 +196,26 @@ function lb_check_active_page( $action ) {
 	} else {
 		return '';
 	}
+}
+
+
+function lb_submit_check_out_form() {
+	if ( ! isset( $_POST['submit-check-out'] ) ) {
+		return;
+	}
+
+	lb_add_order_to_orders_table(
+		array(
+			'user_first_name' => esc_html( $_POST['user_first_name'] ),
+			'user_last_name'  => esc_html( $_POST['user_last_name'] ),
+			'telephone'       => esc_html( $_POST['telephone'] ),
+			'inputAddress'    => esc_html( $_POST['inputAddress'] ),
+			'email'           => esc_html( $_POST['email'] ),
+			'inputCity'       => esc_html( $_POST['inputCity'] ),
+			'inputRegion'     => esc_html( $_POST['inputRegion'] ),
+			'inputZip'        => esc_html( $_POST['inputZip'] ),
+			'user_order'      => 'data',
+		)
+	);
+
 }
