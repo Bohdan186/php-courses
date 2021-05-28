@@ -8,6 +8,7 @@
 lb_add_product_data_to_session();
 lb_delete_product_data_from_session();
 lb_add_product_count_in_session();
+lb_add_product_count_in_session_on_view_cart();
 $products_in_cart = lb_get_product_data_for_cart();
 ?>
 
@@ -77,15 +78,15 @@ $products_in_cart = lb_get_product_data_for_cart();
 											</div>
 										</div>
 									</div>
-									<a href="?action=<?php echo esc_html( $_GET['action'] ); ?>&delete_from_cart=<?php echo esc_html( $product_in_cart['id']  )?>" class="product-delete">
+									<a href="?action=<?php echo 'single_product' === $_GET['action'] ? $_GET['action'] . '&id=' . $_GET['id'] :  $_GET['action'];?>&delete_from_cart=<?php echo esc_html( $product_in_cart['id']  )?>" class="product-delete">
 										<i class="fas fa-trash"></i>
 									</a>
 								</div>
-							<?php
-								endforeach;
-								endif;
-							?>
+							<?php endforeach; ?>
 							<a class="button" href="?action=view_cart">View cart</a>
+							<?php else: ?>
+							<p>Not product</p>
+							<?php endif; ?>
 						</div>
 					</div>
 					<button class="button-burger"><i class="fas fa-bars"></i></button>
@@ -121,7 +122,8 @@ $products_in_cart = lb_get_product_data_for_cart();
 						<li>
 							<a href="pages/contact-us.html">
 								<span class="menu-border">Contact us</span>
-							</a></li>
+							</a>
+						</li>
 					</ul>
 				</div>
 			</div>

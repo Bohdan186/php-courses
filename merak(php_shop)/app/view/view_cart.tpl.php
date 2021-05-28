@@ -62,7 +62,7 @@
 												<?php echo esc_html( $product['price'] ); ?>
 											</th>
 											<th class="product-quantity">
-												<input type="number" name="add_product_count" value="<?php echo lb_get_count_product_in_cart( $product['id'] ); ?>">
+												<input type="number" name="add_product_count[<?php echo $product['id']; ?>]" value="<?php echo lb_get_count_product_in_cart( $product['id'] ); ?>">
 											</th>
 											<th class="product-subtotal">
 												<?php echo lb_get_price_product_in_cart( false, $product['id'] )?>

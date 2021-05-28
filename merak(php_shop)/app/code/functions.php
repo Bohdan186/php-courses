@@ -84,9 +84,14 @@ function lb_delete_product_data_from_session() {
 			unset( $_SESSION['cart'][ $key ] );
 		}
 	}
-
-	header( 'Location: ?action=' . esc_html( $_GET['action'] ) );
-	die();
+	
+	if ( 'single_product' === $_GET['action'] ) {
+		header( 'Location: ?action=' . esc_html( $_GET['action'] ) . '&id=' . esc_html( $_GET['id'] ) );
+		die();
+	}else {
+		header( 'Location: ?action=' . esc_html( $_GET['action'] ) );
+		die();
+	}
 }
 
 /**
@@ -109,16 +114,52 @@ function lb_get_count_products_in_cart() {
 }
 
 function lb_add_product_count_in_session() {
-	if ( ! isset( $_POST['add_to_cart'] ) || ! $_SESSION['cart'] ) {
+	if ( ! isset( $_POST['add_to_cart'] ) ) {
 		return;
 	}
 
 	$add_count  = esc_html( $_POST['add_product_count'] );
 	$product_id = esc_html( $_POST['add_to_cart'] );
+	$flag = false;
 
-	foreach ( $_SESSION['cart'] as &$product ) {
-		if ( $product['product_id'] === $product_id ) {
-			$product['product_count'] = lb_get_count_product_in_cart( $product_id ) + (int) $add_count;
+	if ( empty( $_SESSION['cart'] ) ) {
+		$add_product = array(
+			'product_id'    => $product_id,
+			'product_count' => $add_count,
+		);
+
+		$_SESSION['cart'][] = $add_product;
+	}else {
+		foreach ( $_SESSION['cart'] as &$product ) {
+			if ( $product['product_id'] === $product_id ) {
+				$product['product_count'] = lb_get_count_product_in_cart( $product_id ) + (int) $add_count;
+				$flag = true;
+			}
+		}
+
+		if ( ! $flag ) {
+			$add_product = array(
+				'product_id'    => $product_id,
+				'product_count' => $add_count,
+			);
+
+			$_SESSION['cart'][] = $add_product;
+		}
+	}
+}
+
+function lb_add_product_count_in_session_on_view_cart() {
+	if ( ! isset( $_POST['update_cart'] ) || empty( $_POST['add_product_count'] ) ) {
+		return;
+	}
+	
+	$products_count = $_POST['add_product_count'];
+	
+	foreach ( $products_count as $key => $value ) {
+		foreach ( $_SESSION['cart'] as &$product ) {
+			if ( $product['product_id'] === (string)$key ) {
+				$product['product_count'] = lb_get_count_product_in_cart( (string)$key ) + $value;
+			}
 		}
 	}
 }
@@ -198,13 +239,12 @@ function lb_check_active_page( $action ) {
 	}
 }
 
-
 function lb_submit_check_out_form() {
 	if ( ! isset( $_POST['submit-check-out'] ) ) {
 		return;
 	}
-
-	lb_add_order_to_orders_table(
+	
+	$order_id = lb_add_order_to_orders_table(
 		array(
 			'user_first_name' => esc_html( $_POST['user_first_name'] ),
 			'user_last_name'  => esc_html( $_POST['user_last_name'] ),
@@ -214,8 +254,10 @@ function lb_submit_check_out_form() {
 			'inputCity'       => esc_html( $_POST['inputCity'] ),
 			'inputRegion'     => esc_html( $_POST['inputRegion'] ),
 			'inputZip'        => esc_html( $_POST['inputZip'] ),
-			'user_order'      => 'data',
+			'user_order'      => $_SESSION['cart'],
 		)
 	);
 
+	unset( $_SESSION['cart'] );
+	lb_redirect( '?action=order_complete&order_id=' . $order_id );
 }

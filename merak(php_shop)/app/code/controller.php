@@ -84,3 +84,17 @@ function lb_show_check_out_page_action() {
 		)
 	);
 }
+
+/**
+ * Show order complete page.
+ */
+function lb_show_order_complete_page_action() {
+	$order_id = esc_html( $_GET['order_id'] );
+	
+	lb_show_templates(
+		array(
+			'name' => 'order_complete',
+			'order_complete' => lb_get_order_from_orders_table_by_id( $order_id ),
+		)
+	);
+}

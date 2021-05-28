@@ -41,7 +41,7 @@
 						<?php echo esc_html( $data['this_product']['short_description'] ); ?>
 					</p>
 					<form class="add-to-card" method="post" action="">
-						<input type="number" name="add_product_count" value="1">
+						<input type="number" name="add_product_count" value="1" min="1">
 						<button name="add_to_cart" value="<?php echo esc_html( $data['this_product']['id'] ); ?>" class="button button-cart">Add to cart</button>
 					</form>
 					<div class="row sku-category">

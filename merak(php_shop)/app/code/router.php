@@ -36,6 +36,10 @@ function lb_router() {
 			lb_show_check_out_page_action();
 			break;
 			
+		case 'order_complete':
+			lb_show_order_complete_page_action();
+			break;
+			
 		default:
 			lb_show_404_page_action();
 			break;
