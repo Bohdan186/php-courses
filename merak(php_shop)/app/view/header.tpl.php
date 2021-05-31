@@ -34,7 +34,7 @@ $products_in_cart = lb_get_product_data_for_cart();
 		<div class="container">
 			<div class="header-row color-schema-white">
 				<div class="header-col-left">
-					<a href="?action=admin" class="admin" data-effect="mfp-move-horizontal-right"><i class="far fa-user"></i>Admin Panel</a>
+					Call us: +453 211 41 38
 				</div>
 				<div class="header-col-right"></div>
 			</div>
@@ -107,10 +107,6 @@ $products_in_cart = lb_get_product_data_for_cart();
 						<li>
 							<a href="?action=shop">
 								<span class="menu-border <?php echo lb_check_active_page( 'shop' ); ?>">Shop</span>
-							</a>
-						</li>
-						<li><a href="?action=admin">
-								<span class="menu-border ">Admin</span>
 							</a>
 						</li>
 					</ul>

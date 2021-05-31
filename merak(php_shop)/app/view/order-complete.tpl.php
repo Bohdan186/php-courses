@@ -5,7 +5,6 @@
  * @package templates
  */
 
-//ar( $data['order_complete'] );
 ?>
 
 <section class="navigation-page single-product">
@@ -16,7 +15,7 @@
 				<span><i class="fas fa-chevron-right"></i></span>
 				<a href="?action=shop" class="link-hover">Shop</a>
 				<span><i class="fas fa-chevron-right"></i></span>
-				<a href="<?php echo $_SERVER['QUERY_STRING']; ?>" class="link-hover">Order complete</a>
+				<a href="#" class="link-hover">Order complete</a>
 			</div>
 		</div>
 	</div>
@@ -24,7 +23,7 @@
 <section class="product-main-page">
 	<div class="container">
 		<div class="notice-wrapper">
-			<?php ar( lb_print_notice( 'success' ) );?>
+			<?php lb_print_notice( 'success' );?>
 		</div>
 		<?php if( ! empty( $data['order_complete'] ) ): ?>
 				<div class="row product-center">

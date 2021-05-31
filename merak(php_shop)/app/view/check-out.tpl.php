@@ -21,7 +21,7 @@
 <section class="checkout-form">
 	<div class="container">
 		<div class="notice-wrapper">
-			<?php ar( lb_print_notice( 'error' ) );?>
+			<?php lb_print_notice( 'error' );?>
 		</div>
 		<form method="post" action="">
 			<div class="form-row">
@@ -45,25 +45,27 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="inputAddress">Address <span>*</span></label>
-				<input name="inputAddress" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" value="<?php echo ! empty( $_POST['inputAddress'] ) ? $_POST['inputAddress'] : '' ;?>">
+				<label for="input_address">Address <span>*</span></label>
+				<input name="input_address" type="text" class="form-control" id="input_address" placeholder="1234 Main St" value="<?php echo ! empty( $_POST['input_address'] ) ? $_POST['input_address'] : '' ;?>">
 			</div>
 			<div class="form-row">
 				<div class="form-group col-md-6">
-					<label for="inputCity">City <span>*</span></label>
-					<input name="inputCity" type="text" class="form-control" id="inputCity" value="<?php echo ! empty( $_POST['inputCity'] ) ? $_POST['inputCity'] : '' ;?>">
+					<label for="input_city">City <span>*</span></label>
+					<input name="input_city" type="text" class="form-control" id="input_city" value="<?php echo ! empty( $_POST['input_city'] ) ? $_POST['input_city'] : '' ;?>">
 				</div>
 				<div class="form-group col-md-4">
-					<label for="inputRegion">Region <span>*</span></label>
-					<select name="inputRegion" id="inputRegion" class="form-control">
+					<label for="input_region">Region <span>*</span></label>
+					<select name="input_region" id="input_region" class="form-control">
 						<?php foreach ( $data['regions'] as $region ): ?>
-							<option value="<?php echo $region['id'] ?>"><?php echo $region['name'] ?></option>
+							<option value="<?php echo $region['id'] ?>" <?php echo $region['id'] === $_POST['input_region'] ? 'selected' : ''; ?> >
+								<?php echo $region['name'] ?>
+							</option>
 						<? endforeach; ?>
 					</select>
 				</div>
 				<div class="form-group col-md-2">
-					<label for="inputZip">Zip <span>*</span></label>
-					<input name="inputZip" type="text" class="form-control" id="inputZip" value="<?php echo ! empty( $_POST['inputZip'] ) ? $_POST['inputZip'] : '' ;?>">
+					<label for="input_zip">Zip <span>*</span></label>
+					<input name="input_zip" type="text" class="form-control" id="input_zip" value="<?php echo ! empty( $_POST['input_zip'] ) ? $_POST['input_zip'] : '' ;?>">
 				</div>
 			</div>
 			<button name="submit-check-out" type="submit" class="btn button button-cart">Sign in</button>

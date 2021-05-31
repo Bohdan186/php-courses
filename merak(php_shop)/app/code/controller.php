@@ -12,7 +12,7 @@
 function lb_show_404_page_action() {
 	lb_show_templates(
 		array(
-			'name' => 'page_404',
+			'name' => 'page-404',
 		)
 	);
 }
@@ -64,7 +64,7 @@ function lb_show_single_product_page_action() {
 function lb_show_view_cart_page_action() {
 	lb_show_templates(
 		array(
-			'name' => 'view_cart',
+			'name' => 'view-cart',
 		)
 	);
 }
@@ -77,7 +77,7 @@ function lb_show_check_out_page_action() {
 
 	lb_show_templates(
 		array(
-			'name' => 'check_out',
+			'name'    => 'check-out',
 			'regions' => lb_get_region(),
 		)
 	);
@@ -89,7 +89,7 @@ function lb_show_check_out_page_action() {
 function lb_show_order_complete_page_action() {
 	lb_show_templates(
 		array(
-			'name'           => 'order_complete',
+			'name'           => 'order-complete',
 			'order_complete' => lb_get_order_from_orders_table_by_id( esc_html( $_GET['order_id'] ) ),
 		)
 	);

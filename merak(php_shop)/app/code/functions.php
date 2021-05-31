@@ -11,7 +11,7 @@ session_start();
  * The function prepares the page for display.
  * Connects templates and transfers data from the array to them $data.
  *
- * @param array $data - an array with data for transfer to the created template.
+ * @param array $data - An array with data for transfer to the created template.
  */
 function lb_show_templates( $data ) {
 	include 'app/view/header.tpl.php';
@@ -85,11 +85,9 @@ function lb_delete_product_data_from_session() {
 	}
 
 	if ( 'single_product' === $_GET['action'] ) {
-		header( 'Location: ?action=' . esc_html( $_GET['action'] ) . '&id=' . esc_html( $_GET['id'] ) );
-		die();
+		lb_redirect( '?action=' . esc_html( $_GET['action'] ) . '&id=' . esc_html( $_GET['id'] ) );
 	} else {
-		header( 'Location: ?action=' . esc_html( $_GET['action'] ) );
-		die();
+		lb_redirect( '?action=' . esc_html( $_GET['action'] ) );
 	}
 }
 
@@ -170,9 +168,9 @@ function lb_add_product_count_in_session_on_view_cart() {
 }
 
 /**
- * The function return count product in cart.
+ * The function return count product in cart by id.
  *
- * @param int $id id.
+ * @param int $id Id.
  *
  * @return int
  */
@@ -195,8 +193,8 @@ function lb_get_count_product_in_cart( $id ) {
 /**
  * The function return price product in cart.
  *
- * @param bool $getAll default true. If true - count sum all product, if false - count sum by $id.
- * @param int  $id default (int)0. If $getAll = false - you need set product id!
+ * @param bool $getAll Default true. If true - count sum all product, if false - count sum by $id.
+ * @param int  $id Default (int)0. If $getAll = false - you need set product id.
  *
  * @return int
  */
@@ -208,7 +206,7 @@ function lb_get_price_product_in_cart( $getAll = true, $id = 0 ) {
 	$product_price = 0;
 	$count         = 0;
 
-	if ( true === $getAll ) {
+	if ( $getAll ) {
 		foreach ( $_SESSION['cart'] as $product ) {
 			foreach ( lb_get_product_price_by_id( $product['product_id'] ) as $price ) {
 				$product_price += $price * $product['product_count'];
@@ -237,11 +235,7 @@ function lb_get_price_product_in_cart( $getAll = true, $id = 0 ) {
  * @return string
  */
 function lb_check_active_page( $action ) {
-	if ( $action === $_GET['action'] ) {
-		return 'active';
-	} else {
-		return '';
-	}
+	return $action === $_GET['action'] ? 'active' : '';
 }
 
 /**
@@ -255,45 +249,45 @@ function lb_submit_check_out_form() {
 	$user_first_name = esc_html( $_POST['user_first_name'] );
 	$user_last_name  = esc_html( $_POST['user_last_name'] );
 	$telephone       = esc_html( $_POST['telephone'] );
-	$inputAddress    = esc_html( $_POST['inputAddress'] );
+	$input_address   = esc_html( $_POST['input_address'] );
 	$email           = esc_html( $_POST['email'] );
-	$inputCity       = esc_html( $_POST['inputCity'] );
-	$inputRegion     = esc_html( $_POST['inputRegion'] );
-	$inputZip        = esc_html( $_POST['inputZip'] );
+	$input_city      = esc_html( $_POST['input_city'] );
+	$input_region    = esc_html( $_POST['input_region'] );
+	$input_zip       = esc_html( $_POST['input_zip'] );
 	$cart            = $_SESSION['cart'];
-	
+
 	if ( empty( $user_first_name ) ) {
 		lb_add_notice( 'error', 'Enter your first name !' );
 	}
-	
+
 	if ( empty( $user_last_name ) ) {
 		lb_add_notice( 'error', 'Enter your last name !' );
 	}
-	
+
 	if ( empty( $telephone ) ) {
 		lb_add_notice( 'error', 'Enter your telephone number!' );
 	}
-	
-	if ( empty( $inputAddress ) ) {
+
+	if ( empty( $input_address ) ) {
 		lb_add_notice( 'error', 'Enter your home address !' );
 	}
-	
+
 	if ( empty( $email ) ) {
 		lb_add_notice( 'error', 'Enter your email !' );
 	}
-	
-	if ( empty( $inputCity ) ) {
+
+	if ( empty( $input_city ) ) {
 		lb_add_notice( 'error', 'Enter your city !' );
 	}
-	
-	if ( empty( $inputRegion ) ) {
+
+	if ( empty( $input_region ) ) {
 		lb_add_notice( 'error', 'Enter your region !' );
 	}
-	
-	if ( empty( $inputZip ) ) {
+
+	if ( empty( $input_zip ) ) {
 		lb_add_notice( 'error', 'Enter zip your city !' );
 	}
-	
+
 	if ( ! empty( $_SESSION['notice']['error'] ) ) {
 		return;
 	}
@@ -303,16 +297,17 @@ function lb_submit_check_out_form() {
 			'user_first_name' => $user_first_name,
 			'user_last_name'  => $user_last_name,
 			'telephone'       => $telephone,
-			'inputAddress'    => $inputAddress,
+			'input_address'   => $input_address,
 			'email'           => $email,
-			'inputCity'       => $inputCity,
-			'inputRegion'     => $inputRegion,
-			'inputZip'        => $inputZip,
+			'input_city'      => $input_city,
+			'input_region'    => $input_region,
+			'input_zip'       => $input_zip,
 			'user_order'      => $cart,
 		)
 	);
 
-	unset( $_SESSION['cart'] );
 	lb_add_notice( 'success', 'Your order has been successfully added !' );
+
+	unset( $_SESSION['cart'] );
 	lb_redirect( '?action=order_complete&order_id=' . $order_id );
 }

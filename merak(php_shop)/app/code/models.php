@@ -5,10 +5,13 @@
  * @package models
  */
 
-$lb_pdo = new PDO( 'mysql:host=192.168.1.79;dbname=merak_db', 'bohdan', 'bohdan' );
+$lb_pdo = new PDO( 'mysql:host=192.168.1.78;dbname=merak_db', 'bohdan', 'bohdan' );
 
 /**
  * This function return products data for home page.
+ *
+ * @param int $count_record How many products to take.
+ * @param int $start_record From which product to start taking. The default is 0.
  *
  * @return array
  */
@@ -51,11 +54,10 @@ function lb_get_products_count() {
 /**
  * This function return all products data by id from product table.
  *
- * @param int $product_id product id in product table.
+ * @param int $product_id Product id in product table.
  *
  * @return array
  */
-
 function lb_get_product_data_by_id( $product_id ) {
 	global $lb_pdo;
 
@@ -77,13 +79,11 @@ function lb_get_product_data_by_id( $product_id ) {
 /**
  * This function return some data for cart by id from product table.
  *
- * @param array $products_id products id in product table.
- *
  * @return array
  */
 function lb_get_product_data_for_cart() {
 	if ( empty( $_SESSION['cart'] ) ) {
-		return;
+		return array();
 	}
 
 	$products_in_cart = $_SESSION['cart'];
@@ -112,7 +112,7 @@ function lb_get_product_data_for_cart() {
 /**
  * This function return price by id from product table.
  *
- * @param array $product_id products id in product table.
+ * @param array $product_id Products id in product table.
  *
  * @return array
  */
@@ -134,6 +134,13 @@ function lb_get_product_price_by_id( $product_id ) {
 	return $result->fetch( PDO::FETCH_NUM );
 }
 
+/**
+ * This function return product category where product.id = $product_id .
+ *
+ * @param int $product_id Id product of which category you need to find.
+ *
+ * @return array
+ */
 function lb_get_product_category_by_id( $product_id ) {
 	global $lb_pdo;
 
@@ -153,6 +160,14 @@ function lb_get_product_category_by_id( $product_id ) {
 	return $result->fetchAll( PDO::FETCH_ASSOC );
 }
 
+/**
+ * This function accepts data from the order form, and (after verification) adds them to the database.
+ * Return last order (string)id.
+ *
+ * @param array $order_values Data from the order form.
+ *
+ * @return string
+ */
 function lb_add_order_to_orders_table( $order_values ) {
 	$values = '';
 
@@ -165,7 +180,7 @@ function lb_add_order_to_orders_table( $order_values ) {
 	$insert_to_data_orders = $lb_pdo->prepare(
 		'
 		INSERT INTO data_orders ( first_name, last_name, telephone, address, email, city, region_id, zip )
-			VALUES ( :user_first_name,  :user_last_name,  :telephone,  :inputAddress,  :email,  :inputCity,  :inputRegion,  :inputZip );
+			VALUES ( :user_first_name,  :user_last_name,  :telephone,  :input_address,  :email,  :input_city,  :input_region,  :input_zip );
 	'
 	);
 
@@ -178,11 +193,11 @@ function lb_add_order_to_orders_table( $order_values ) {
 	$insert_to_data_orders->bindParam( ':user_first_name', $order_values['user_first_name'] );
 	$insert_to_data_orders->bindParam( ':user_last_name', $order_values['user_last_name'] );
 	$insert_to_data_orders->bindParam( ':telephone', $order_values['telephone'] );
-	$insert_to_data_orders->bindParam( ':inputAddress', $order_values['inputAddress'] );
+	$insert_to_data_orders->bindParam( ':input_address', $order_values['input_address'] );
 	$insert_to_data_orders->bindParam( ':email', $order_values['email'] );
-	$insert_to_data_orders->bindParam( ':inputCity', $order_values['inputCity'] );
-	$insert_to_data_orders->bindParam( ':inputRegion', $order_values['inputRegion'], PDO::PARAM_INT );
-	$insert_to_data_orders->bindParam( ':inputZip', $order_values['inputZip'], PDO::PARAM_INT );
+	$insert_to_data_orders->bindParam( ':input_city', $order_values['input_city'] );
+	$insert_to_data_orders->bindParam( ':input_region', $order_values['input_region'], PDO::PARAM_INT );
+	$insert_to_data_orders->bindParam( ':input_zip', $order_values['input_zip'], PDO::PARAM_INT );
 
 	$i = 0;
 	foreach ( $order_values['user_order'] as $order ) {
@@ -201,6 +216,13 @@ function lb_add_order_to_orders_table( $order_values ) {
 	return $order_id;
 }
 
+/**
+ * Takes data from the database about the last added order, by id
+ *
+ * @param int $id Id of the last added order.
+ *
+ * @return array
+ */
 function lb_get_order_from_orders_table_by_id( $id ) {
 	global $lb_pdo;
 
@@ -218,12 +240,17 @@ function lb_get_order_from_orders_table_by_id( $id ) {
 	return $result->fetchAll( PDO::FETCH_ASSOC );
 }
 
+/**
+ * Returns all data from the region table.
+ *
+ * @return array
+ */
 function lb_get_region() {
 	global $lb_pdo;
-	
-	$result = $lb_pdo->prepare('SELECT * FROM region');
-	
+
+	$result = $lb_pdo->prepare( 'SELECT * FROM region' );
+
 	$result->execute();
-	
+
 	return $result->fetchAll( PDO::FETCH_ASSOC );
 }
