@@ -96,7 +96,11 @@
 						</div>
 						<div class="product-text">
 							<div class="product-text-inner">
-								<h6><a href="?action=single_product&id=<?php echo esc_html( $product['id'] ); ?>" class="link-hover"><?php echo esc_html( $product['name'] ); ?></a></h6>
+								<h6>
+									<a href="?action=single_product&id=<?php echo esc_html( $product['id'] ); ?>" class="link-hover">
+										<?php echo esc_html( $product['name'] ); ?>
+									</a>
+								</h6>
 							</div>
 							<div class="price">
 								<?php echo esc_html( $product['price'] ); ?>

@@ -17,11 +17,7 @@ function lb_get_products_data( $count_record = 1, $start_record = 0 ) {
 
 	$result = $lb_pdo->prepare(
 		'
-		SELECT
-			id,
-			name,
-			price,
-			img_url
+		SELECT id, name, price, img_url
 		FROM product
 		ORDER BY id DESC
 		LIMIT :start_record, :count_record;
@@ -103,11 +99,7 @@ function lb_get_product_data_for_cart() {
 
 	$result = $lb_pdo->prepare(
 		'
-		SELECT
-			id,
-			name,
-			price,
-			img_url
+		SELECT id, name, price, img_url
 		FROM product
 		WHERE' . $id_list
 	);
@@ -163,11 +155,11 @@ function lb_get_product_category_by_id( $product_id ) {
 
 function lb_add_order_to_orders_table( $order_values ) {
 	$values = '';
-	
-	for( $i = 0; $i < count( $order_values['user_order'] ); $i++ ){
+
+	for ( $i = 0; $i < count( $order_values['user_order'] ); $i++ ) {
 		$values .= "( LAST_INSERT_ID(), :product_id_$i, :count_$i ), ";
 	};
-	
+
 	global $lb_pdo;
 
 	$insert_to_data_orders = $lb_pdo->prepare(
@@ -176,46 +168,60 @@ function lb_add_order_to_orders_table( $order_values ) {
 			VALUES ( :user_first_name,  :user_last_name,  :telephone,  :inputAddress,  :email,  :inputCity,  :inputRegion,  :inputZip );
 	'
 	);
-	
+
 	$insert_to_orders = $lb_pdo->prepare(
 		'
-		INSERT INTO
-			orders ( order_id, product_id, count )
+		INSERT INTO orders ( order_id, product_id, count )
 		VALUES' . substr( $values, 0, -2 )
 	);
-	
+
 	$insert_to_data_orders->bindParam( ':user_first_name', $order_values['user_first_name'] );
 	$insert_to_data_orders->bindParam( ':user_last_name', $order_values['user_last_name'] );
-	$insert_to_data_orders->bindParam( ':telephone', $order_values['telephone']);
+	$insert_to_data_orders->bindParam( ':telephone', $order_values['telephone'] );
 	$insert_to_data_orders->bindParam( ':inputAddress', $order_values['inputAddress'] );
 	$insert_to_data_orders->bindParam( ':email', $order_values['email'] );
 	$insert_to_data_orders->bindParam( ':inputCity', $order_values['inputCity'] );
 	$insert_to_data_orders->bindParam( ':inputRegion', $order_values['inputRegion'], PDO::PARAM_INT );
 	$insert_to_data_orders->bindParam( ':inputZip', $order_values['inputZip'], PDO::PARAM_INT );
-	
+
 	$i = 0;
-	foreach ( $order_values['user_order'] as $order ){
+	foreach ( $order_values['user_order'] as $order ) {
 		$insert_to_orders->bindParam( ":product_id_$i", $order['product_id'] );
-		$insert_to_orders->bindParam( ":count_$i",  $order['product_count'] );
-		
+		$insert_to_orders->bindParam( ":count_$i", $order['product_count'] );
+
 		$i++;
 	}
-	
+
 	$insert_to_data_orders->execute();
+
+	$order_id = $lb_pdo->lastInsertId();
+
 	$insert_to_orders->execute();
-	
-	return $lb_pdo->lastInsertId();
+
+	return $order_id;
 }
 
 function lb_get_order_from_orders_table_by_id( $id ) {
 	global $lb_pdo;
-	
-	$result = $lb_pdo->prepare( '
-	SELECT product.id, product.name, product.price, product.img_url FROM orders
-	LEFT JOIN product ON product.id = orders.product_id
-	GROUP BY product.id
-' );
+
+	$result = $lb_pdo->prepare(
+		'
+		SELECT product.id, product.name, product.price, product.img_url, count FROM orders
+		LEFT JOIN product ON product.id = orders.product_id
+		WHERE orders.order_id = :id;
+'
+	);
 	$result->bindParam( ':id', $id );
+
+	$result->execute();
+
+	return $result->fetchAll( PDO::FETCH_ASSOC );
+}
+
+function lb_get_region() {
+	global $lb_pdo;
+	
+	$result = $lb_pdo->prepare('SELECT * FROM region');
 	
 	$result->execute();
 	

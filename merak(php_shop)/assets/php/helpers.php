@@ -46,3 +46,43 @@ function lb_redirect( $url ) {
 	header( 'Location:' . $url );
 	die();
 }
+
+/**
+ * Add notice in Session['notice'].
+ *
+ * @param string $type type.
+ * @param string $message message.
+ */
+function lb_add_notice( $type, $message ) {
+	$_SESSION['notice'][ $type ][] = $message;
+}
+
+/**
+ * Print notice from Session['notice'].
+ *
+ * @param $type
+ */
+function lb_print_notice( $type ) {
+	$arr_notice = $_SESSION['notice'][ $type ];
+	$type_class = '';
+	
+	if ( 'error' === $type ) {
+		$type_class = 'alert-danger';
+	} else if ( 'success' === $type ) {
+		$type_class = 'alert-success';
+	}
+	
+	if ( ! empty( $arr_notice ) ) { ?>
+
+		<div class="alert <?php echo $type_class; ?> text-center mt-3" role="alert">
+			<?php foreach ( $arr_notice as $value ) :?>
+				<p>
+					<?php echo $value;?>
+				</p>
+			<?php endforeach; ?>
+		</div>
+		
+		<?php
+	}
+	unset( $_SESSION['notice'][ $type ] );
+}

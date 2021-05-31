@@ -33,13 +33,10 @@ function lb_show_home_page_action() {
  * Show shop page.
  */
 function lb_show_shop_page_action() {
-
-	$start_record = lb_get_start_record();
-
 	lb_show_templates(
 		array(
 			'name'          => 'shop',
-			'products'      => lb_get_products_data( 12, $start_record ),
+			'products'      => lb_get_products_data( 12, lb_get_start_record() ),
 			'product_count' => lb_get_products_count(),
 		)
 	);
@@ -81,6 +78,7 @@ function lb_show_check_out_page_action() {
 	lb_show_templates(
 		array(
 			'name' => 'check_out',
+			'regions' => lb_get_region(),
 		)
 	);
 }
@@ -89,12 +87,10 @@ function lb_show_check_out_page_action() {
  * Show order complete page.
  */
 function lb_show_order_complete_page_action() {
-	$order_id = esc_html( $_GET['order_id'] );
-	
 	lb_show_templates(
 		array(
-			'name' => 'order_complete',
-			'order_complete' => lb_get_order_from_orders_table_by_id( $order_id ),
+			'name'           => 'order_complete',
+			'order_complete' => lb_get_order_from_orders_table_by_id( esc_html( $_GET['order_id'] ) ),
 		)
 	);
 }

@@ -4,5 +4,6 @@
  *
  * @package templates
  */
+?>
 
-echo '404';
+<h4>404 ERROR!</h4>

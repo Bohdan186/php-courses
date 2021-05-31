@@ -5,7 +5,7 @@
  * @package templates
  */
 
-ar( $data['order_complete'] );
+//ar( $data['order_complete'] );
 ?>
 
 <section class="navigation-page single-product">
@@ -23,8 +23,10 @@ ar( $data['order_complete'] );
 </section>
 <section class="product-main-page">
 	<div class="container">
+		<div class="notice-wrapper">
+			<?php ar( lb_print_notice( 'success' ) );?>
+		</div>
 		<?php if( ! empty( $data['order_complete'] ) ): ?>
-			<form action="" method="post">
 				<div class="row product-center">
 					<div class="col">
 						<div class="product-page-text product-sticky">
@@ -36,11 +38,14 @@ ar( $data['order_complete'] );
 									<th class="product-price">Price</th>
 									<th class="product-quantity">Quantity</th>
 									<th class="product-subtotal">Subtotal</th>
-									<th class="product-remove"></th>
 								</tr>
 								</thead>
 								<tbody>
-								<?php foreach ( $data['order_complete'] as $product ): ?>
+								<?php
+								$total_price = 0;
+								foreach ( $data['order_complete'] as $product ):
+									$total_price += (float)esc_html( $product['price'] ) * (float)esc_html( $product['count'] );
+									?>
 									<tr>
 										<th class="product-photo">
 											<div class="swiper-container gallery-top btn-wrapper" >
@@ -64,10 +69,10 @@ ar( $data['order_complete'] );
 											<?php echo esc_html( $product['price'] ); ?>
 										</th>
 										<th class="product-quantity">
-											<?php echo lb_get_count_product_in_cart( $product['id'] ); ?>">
+											<?php echo esc_html( $product['count'] ); ?>
 										</th>
 										<th class="product-subtotal">
-											<?php echo lb_get_price_product_in_cart( false, $product['id'] )?>
+											<?php echo (float)esc_html( $product['price'] ) * (float)esc_html( $product['count'] ) ?>
 										</th>
 									</tr>
 								<?php endforeach; ?>
@@ -78,13 +83,8 @@ ar( $data['order_complete'] );
 				</div>
 				<div class="total_price">
 					<h5>Total:</h5>
-					<?php echo lb_get_price_product_in_cart()?>
+					<?php echo $total_price ?>
 				</div>
-				<div class="cart-button-wrapper">
-					<button type="submit" name="update_cart" class="button button-cart">Update Cart</button>
-					<a href="?action=check_out" class="button button-cart">Check Out</a>
-				</div>
-			</form>
 		<?php endif; ?>
 	</div>
 </section>

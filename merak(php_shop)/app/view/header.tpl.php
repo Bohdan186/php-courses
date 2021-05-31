@@ -44,48 +44,46 @@ $products_in_cart = lb_get_product_data_for_cart();
 		<div class="container">
 			<div class="header-row">
 				<div class="header-col-left">
-					<a href="?action=home" class="logo-main"><img src="assets/img/merak-logo.svg" alt=""></a>
+					<a href="?action=home" class="logo-main"><img src="assets/img/merak-logo.svg" alt="merak"></a>
 				</div>
 				<div class="header-col-center"></div>
 				<div class="header-col-right">
 					<div class="header-link">
 						<a href="?action=view_cart" class="btn-popup" data-effect="mfp-move-horizontal-right"><i class="icons-main-header fal fa-shopping-bag"></i> <?php echo lb_get_count_products_in_cart(); ?> <span>/ $<?php echo lb_get_price_product_in_cart(); ?></span></a>
 						<div class="cart-dropdown">
-							<?php
-								if ( $products_in_cart ) :
-								foreach ( $products_in_cart as $product_in_cart ):
-							?>
-								<div class="cart-product">
-									<div class="product_wrapper">
-										<div class="product-img">
-											<img src="<?php echo esc_html( $product_in_cart['img_url'] ); ?>" alt="<?php echo esc_html( $product_in_cart['name'] ); ?>">
+							<?php if ( $products_in_cart ) : ?>
+								<?php foreach ( $products_in_cart as $product_in_cart ): ?>
+									<div class="cart-product">
+										<div class="product_wrapper">
+											<div class="product-img">
+												<img src="<?php echo esc_html( $product_in_cart['img_url'] ); ?>" alt="<?php echo esc_html( $product_in_cart['name'] ); ?>">
+											</div>
+											<div class="product-body">
+												<div class="product-name">
+													<?php echo esc_html( $product_in_cart['name'] ); ?>
+												</div>
+												<div class="product-price">
+													price for one:
+													<strong>
+														<?php echo esc_html( $product_in_cart['price'] ); ?> $
+													</strong>
+												</div>
+												<div class="product-count">
+													count:
+													<strong>
+														<?php echo lb_get_count_product_in_cart( $product_in_cart['id'] ); ?>
+													</strong>
+												</div>
+											</div>
 										</div>
-										<div class="product-body">
-											<div class="product-name">
-												<?php echo esc_html( $product_in_cart['name'] ); ?>
-											</div>
-											<div class="product-price">
-												price for one:
-												<strong>
-													<?php echo esc_html( $product_in_cart['price'] ); ?> $
-												</strong>
-											</div>
-											<div class="product-count">
-												count:
-												<strong>
-													<?php echo lb_get_count_product_in_cart( $product_in_cart['id'] ); ?>
-												</strong>
-											</div>
-										</div>
+										<a href="?action=<?php echo 'single_product' === $_GET['action'] ? $_GET['action'] . '&id=' . $_GET['id'] :  $_GET['action'];?>&delete_from_cart=<?php echo esc_html( $product_in_cart['id']  )?>" class="product-delete">
+											<i class="fas fa-trash"></i>
+										</a>
 									</div>
-									<a href="?action=<?php echo 'single_product' === $_GET['action'] ? $_GET['action'] . '&id=' . $_GET['id'] :  $_GET['action'];?>&delete_from_cart=<?php echo esc_html( $product_in_cart['id']  )?>" class="product-delete">
-										<i class="fas fa-trash"></i>
-									</a>
-								</div>
-							<?php endforeach; ?>
+								<?php endforeach; ?>
 							<a class="button" href="?action=view_cart">View cart</a>
 							<?php else: ?>
-							<p>Not product</p>
+								<p>Not product</p>
 							<?php endif; ?>
 						</div>
 					</div>
@@ -111,17 +109,8 @@ $products_in_cart = lb_get_product_data_for_cart();
 								<span class="menu-border <?php echo lb_check_active_page( 'shop' ); ?>">Shop</span>
 							</a>
 						</li>
-						<li><a href="#">
-								<span class="menu-border ">Blog </span>
-							</a>
-						</li>
-						<li><a href="pages/about-us.html">
-								<span class="menu-border">About us</span>
-							</a>
-						</li>
-						<li>
-							<a href="pages/contact-us.html">
-								<span class="menu-border">Contact us</span>
+						<li><a href="?action=admin">
+								<span class="menu-border ">Admin</span>
 							</a>
 						</li>
 					</ul>
